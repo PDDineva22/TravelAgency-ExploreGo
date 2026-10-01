@@ -20,5 +20,6 @@ namespace TravelAgencyExploreGo.Data.Models
         [Required]
         [MaxLength(EntityValidation.destinationImageUrlLengthMax)]
         public string ImageUrl { get; set; } = null!;
+        public virtual ICollection<Trip> Trips { get; set; } = new HashSet<Trip>();
     }
 }

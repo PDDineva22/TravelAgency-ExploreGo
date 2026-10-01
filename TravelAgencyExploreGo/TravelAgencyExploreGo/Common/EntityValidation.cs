@@ -17,5 +17,20 @@
         public const int destinationImageUrlLengthMax = 500;
         // Destination End
 
+        // Trip Begin
+        public const int tripTitleLengthMax = 20;
+        public const int tripTitleLengthMin = 5;
+        public const string tripPraceValueMax = "100000";
+        public const string tripPraceValueMin = "0.10";
+        public const int tripAvailableSeatsCountMax = 1000;
+        public const int tripAvailableSeatsCountMin = 1;
+        // Trip End
+
+        // Booking Begin
+        public const int bookingPeopleCountValueMax = 1000;
+        public const int bookingPeopleCountValueMin = 1;
+        public const string bookingTotalPriceValueMax = "100000";
+        public const string bookingTotalPriceValueMin = "10";
+        // Booking End
     }
 }
