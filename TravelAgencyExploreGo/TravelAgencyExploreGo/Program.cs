@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using TravelAgencyExploreGo.Data;
+
 namespace TravelAgencyExploreGo
 {
     public class Program
@@ -5,6 +8,9 @@ namespace TravelAgencyExploreGo
         public static void Main(string[] args)
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<TravelAgencyDbContext>(options => options.UseSqlServer(
+                builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

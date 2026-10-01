@@ -1,6 +1,8 @@
 ﻿namespace TravelAgencyExploreGo.Data.Models.Enums
 {
-    public class BookingStatus
+    public enum BookingStatus
     {
+        Confirmed = 1,
+        Cancelled = 2
     }
 }
