@@ -26,6 +26,7 @@
         public const string tripPraceValueMin = "0.10";
         public const int tripAvailableSeatsCountMax = 1000;
         public const int tripAvailableSeatsCountMin = 1;
+        public const int tripImageUrlLengthMax = 500;
         // Trip End
 
         // Booking Begin

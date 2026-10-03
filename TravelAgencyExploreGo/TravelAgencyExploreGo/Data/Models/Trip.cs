@@ -17,6 +17,10 @@ namespace TravelAgencyExploreGo.Data.Models
         public decimal Price { get; set; }
         [Range(EntityValidation.tripAvailableSeatsCountMin, EntityValidation.tripAvailableSeatsCountMax)]
         public int AvailableSeats { get; set; }
+        [Url]
+        [Required]
+        [MaxLength(EntityValidation.tripImageUrlLengthMax)]
+        public string ImageUrl { get; set; } = null!;
         [ForeignKey(nameof(DestinationId))]
         public Guid DestinationId { get; set; }
         public virtual Destination Destination { get; set; } = null!;
