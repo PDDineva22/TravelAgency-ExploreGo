@@ -18,11 +18,13 @@ namespace TravelAgencyExploreGo.Data.Models
         public Guid TripId { get; set; }
         public virtual Trip Trip { get; set; } = null!;
 
-        public DateTime BookingDate { get; set; }
+        public DateTime BookingDate { get; set; } = DateTime.UtcNow;
+
         [Range(EntityValidation.bookingPeopleCountValueMin, EntityValidation.bookingPeopleCountValueMax)]
         public int PeopleCount { get; set; }
-        [Range(typeof(decimal), EntityValidation.bookingTotalPriceValueMin, EntityValidation.tripPraceValueMax)]
+
+        [Range(typeof(decimal), EntityValidation.bookingTotalPriceValueMin, EntityValidation.bookingTotalPriceValueMax)]
         public decimal TotalPrice { get; set; }
-        public virtual BookingStatus BookingStatus { get; set; }
+        public virtual BookingStatus BookingStatus { get; set; } = BookingStatus.Panding;
     }
 }

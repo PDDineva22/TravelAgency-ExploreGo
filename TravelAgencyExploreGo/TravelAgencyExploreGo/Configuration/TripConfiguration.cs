@@ -22,6 +22,26 @@ namespace TravelAgencyExploreGo.Configuration
                 .HasPrecision(18, 2);
 
             entity
+                .Property(t => t.ImageUrl1)
+                .IsRequired()
+                .HasMaxLength(EntityValidation.tripImageUrlLengthMax);
+
+            entity
+                .Property(t => t.ImageUrl2)
+                .IsRequired()
+                .HasMaxLength(EntityValidation.tripImageUrlLengthMax);
+
+            entity
+                .Property(t => t.ImageUrl3)
+                .IsRequired()
+                .HasMaxLength(EntityValidation.tripImageUrlLengthMax);
+
+            entity
+                .Property(t => t.Description)
+                .IsRequired()
+                .HasMaxLength(EntityValidation.tripDescriptionLengthMax);
+
+            entity
                 .HasOne(t => t.Destination)
                 .WithMany(d => d.Trips)
                 .HasForeignKey(t => t.DestinationId)

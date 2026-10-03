@@ -24,13 +24,15 @@
         public const int tripTitleLengthMin = 5;
         public const string tripPraceValueMax = "100000";
         public const string tripPraceValueMin = "0.10";
-        public const int tripAvailableSeatsCountMax = 1000;
+        public const int tripAvailableSeatsCountMax = 500;
         public const int tripAvailableSeatsCountMin = 1;
         public const int tripImageUrlLengthMax = 500;
+        public const int tripDescriptionLengthMax = 30;
+        public const int tripDescriptionLengthMin = 3;
         // Trip End
 
         // Booking Begin
-        public const int bookingPeopleCountValueMax = 1000;
+        public const int bookingPeopleCountValueMax = 500;
         public const int bookingPeopleCountValueMin = 1;
         public const string bookingTotalPriceValueMax = "100000";
         public const string bookingTotalPriceValueMin = "10";

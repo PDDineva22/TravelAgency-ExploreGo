@@ -11,6 +11,9 @@ namespace TravelAgencyExploreGo.Data.Models
         [Required]
         [StringLength(EntityValidation.tripTitleLengthMax, MinimumLength = EntityValidation.tripTitleLengthMin)]
         public string Title { get; set; } = null!;
+        [Required]
+        [StringLength(EntityValidation.tripDescriptionLengthMax, MinimumLength = EntityValidation.tripDescriptionLengthMin)]
+        public string Description { get; set; } = null!;
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         [Range(typeof(decimal), EntityValidation.tripPraceValueMin, EntityValidation.tripPraceValueMax)]
@@ -20,7 +23,15 @@ namespace TravelAgencyExploreGo.Data.Models
         [Url]
         [Required]
         [MaxLength(EntityValidation.tripImageUrlLengthMax)]
-        public string ImageUrl { get; set; } = null!;
+        public string ImageUrl1 { get; set; } = null!;
+        [Url]
+        [Required]
+        [MaxLength(EntityValidation.tripImageUrlLengthMax)]
+        public string ImageUrl2 { get; set; } = null!;
+        [Url]
+        [Required]
+        [MaxLength(EntityValidation.tripImageUrlLengthMax)]
+        public string ImageUrl3 { get; set; } = null!;
         [ForeignKey(nameof(DestinationId))]
         public Guid DestinationId { get; set; }
         public virtual Destination Destination { get; set; } = null!;

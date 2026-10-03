@@ -12,7 +12,7 @@ using TravelAgencyExploreGo.Data;
 namespace TravelAgencyExploreGo.Migrations
 {
     [DbContext(typeof(TravelAgencyDbContext))]
-    [Migration("20261003114903_InitialCreate")]
+    [Migration("20261003124921_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -38,7 +38,7 @@ namespace TravelAgencyExploreGo.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("PeopleCount")
-                        .HasMaxLength(1000)
+                        .HasMaxLength(500)
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalPrice")
@@ -98,13 +98,28 @@ namespace TravelAgencyExploreGo.Migrations
                     b.Property<int>("AvailableSeats")
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
                     b.Property<Guid>("DestinationId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("ImageUrl1")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ImageUrl2")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ImageUrl3")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
