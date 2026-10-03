@@ -9,6 +9,7 @@ namespace TravelAgencyExploreGo.Data.Models
     {
         [Key]
         public Guid Id { get; set; }
+
         [ForeignKey(nameof(UserId))]
         public Guid UserId { get; set; }
         public virtual User User { get; set; } = null!;

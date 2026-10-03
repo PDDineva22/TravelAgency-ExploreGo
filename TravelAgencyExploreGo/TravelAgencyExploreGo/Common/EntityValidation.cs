@@ -12,6 +12,8 @@
         // Destination Begin
         public const int destinationNameLengthMax = 15;
         public const int destinationNameLengthMin = 2;
+        public const int destinationCountryLengthMax = 20;
+        public const int destinationCountryLengthMin = 2;
         public const int destinationDescriptionLengthMax = 30;
         public const int destinationDescriptionLengthMin = 5;
         public const int destinationImageUrlLengthMax = 500;
