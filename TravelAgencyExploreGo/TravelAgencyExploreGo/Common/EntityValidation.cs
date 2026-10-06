@@ -7,6 +7,7 @@
         public const int userFirstNameLengthMin = 1;
         public const int userLastNameLengthMax = 50;
         public const int userLastNameLengthMin = 1;
+        public const string userEmailRegex = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
         // User End
 
         // Destination Begin
