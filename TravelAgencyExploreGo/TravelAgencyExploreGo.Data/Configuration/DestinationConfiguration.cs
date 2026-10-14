@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TravelAgencyExploreGo.Common;
-using TravelAgencyExploreGo.Data.Models;
+using TravelAgencyExploreGo.Data.Models.Entities;
 
-namespace TravelAgencyExploreGo.Configuration
+namespace TravelAgencyExploreGo.Data.Configuration
 {
     public class DestinationConfiguration : IEntityTypeConfiguration<Destination>
     {
@@ -15,22 +15,22 @@ namespace TravelAgencyExploreGo.Configuration
             entity
                 .Property(d => d.Name)
                 .IsRequired()
-                .HasMaxLength(EntityValidation.destinationNameLengthMax);
+                .HasMaxLength(EntityValidation.DestinationNameLengthMax);
 
             entity
                 .Property(d => d.Country)
                 .IsRequired()
-                .HasMaxLength(EntityValidation.destinationCountryLengthMax);
+                .HasMaxLength(EntityValidation.DestinationCountryLengthMax);
 
             entity
                 .Property(d => d.Description)
                 .IsRequired()
-                .HasMaxLength(EntityValidation.destinationDescriptionLengthMax);
+                .HasMaxLength(EntityValidation.DestinationDescriptionLengthMax);
 
             entity
                 .Property(d => d.ImageUrl)
                 .IsRequired()
-                .HasMaxLength(EntityValidation.destinationImageUrlLengthMax);
+                .HasMaxLength(EntityValidation.DestinationImageUrlLengthMax);
         }
     }
 }

@@ -2,15 +2,12 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TravelAgencyExploreGo.Data.Models;
+using TravelAgencyExploreGo.Data.Models.Entities;
 
 namespace TravelAgencyExploreGo.Data
 {
     public class TravelAgencyDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
-        public TravelAgencyDbContext()
-        {
-            
-        }
         public TravelAgencyDbContext(DbContextOptions options) : base(options)
         {
             

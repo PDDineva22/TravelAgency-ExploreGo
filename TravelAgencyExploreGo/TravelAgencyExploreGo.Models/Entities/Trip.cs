@@ -2,35 +2,35 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using TravelAgencyExploreGo.Common;
 
-namespace TravelAgencyExploreGo.Data.Models
+namespace TravelAgencyExploreGo.Data.Models.Entities
 {
     public class Trip
     {
         [Key]
         public Guid Id { get; set; }
         [Required]
-        [StringLength(EntityValidation.tripTitleLengthMax, MinimumLength = EntityValidation.tripTitleLengthMin)]
+        [StringLength(EntityValidation.TripTitleLengthMax, MinimumLength = EntityValidation.TripTitleLengthMin)]
         public string Title { get; set; } = null!;
         [Required]
-        [StringLength(EntityValidation.tripDescriptionLengthMax, MinimumLength = EntityValidation.tripDescriptionLengthMin)]
+        [StringLength(EntityValidation.TripDescriptionLengthMax, MinimumLength = EntityValidation.TripDescriptionLengthMin)]
         public string Description { get; set; } = null!;
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        [Range(typeof(decimal), EntityValidation.tripPraceValueMin, EntityValidation.tripPraceValueMax)]
+        [Range(typeof(decimal), EntityValidation.TripPriceValueMin, EntityValidation.TripPriceValueMax)]
         public decimal Price { get; set; }
-        [Range(EntityValidation.tripAvailableSeatsCountMin, EntityValidation.tripAvailableSeatsCountMax)]
+        [Range(EntityValidation.TripAvailableSeatsCountMin, EntityValidation.TripAvailableSeatsCountMax)]
         public int AvailableSeats { get; set; }
         [Url]
         [Required]
-        [MaxLength(EntityValidation.tripImageUrlLengthMax)]
+        [MaxLength(EntityValidation.TripImageUrlLengthMax)]
         public string ImageUrl1 { get; set; } = null!;
         [Url]
         [Required]
-        [MaxLength(EntityValidation.tripImageUrlLengthMax)]
+        [MaxLength(EntityValidation.TripImageUrlLengthMax)]
         public string ImageUrl2 { get; set; } = null!;
         [Url]
         [Required]
-        [MaxLength(EntityValidation.tripImageUrlLengthMax)]
+        [MaxLength(EntityValidation.TripImageUrlLengthMax)]
         public string ImageUrl3 { get; set; } = null!;
         [ForeignKey(nameof(DestinationId))]
         public Guid DestinationId { get; set; }

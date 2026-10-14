@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelAgencyExploreGo.Data;
 
 #nullable disable
 
-namespace TravelAgencyExploreGo.Migrations
+namespace TravelAgencyExploreGo.Data.Migrations
 {
     [DbContext(typeof(TravelAgencyDbContext))]
-    partial class TravelAgencyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20261014174543_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,7 +156,7 @@ namespace TravelAgencyExploreGo.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Booking", b =>
+            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.Booking", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -181,12 +184,14 @@ namespace TravelAgencyExploreGo.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TripId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Destination", b =>
+            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.Destination", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -217,7 +222,7 @@ namespace TravelAgencyExploreGo.Migrations
                     b.ToTable("Destinations");
                 });
 
-            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Trip", b =>
+            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.Trip", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -271,7 +276,7 @@ namespace TravelAgencyExploreGo.Migrations
                     b.ToTable("Trips");
                 });
 
-            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.User", b =>
+            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -358,7 +363,7 @@ namespace TravelAgencyExploreGo.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("TravelAgencyExploreGo.Data.Models.User", null)
+                    b.HasOne("TravelAgencyExploreGo.Data.Models.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -367,7 +372,7 @@ namespace TravelAgencyExploreGo.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("TravelAgencyExploreGo.Data.Models.User", null)
+                    b.HasOne("TravelAgencyExploreGo.Data.Models.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -382,7 +387,7 @@ namespace TravelAgencyExploreGo.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelAgencyExploreGo.Data.Models.User", null)
+                    b.HasOne("TravelAgencyExploreGo.Data.Models.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -391,22 +396,22 @@ namespace TravelAgencyExploreGo.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("TravelAgencyExploreGo.Data.Models.User", null)
+                    b.HasOne("TravelAgencyExploreGo.Data.Models.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Booking", b =>
+            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.Booking", b =>
                 {
-                    b.HasOne("TravelAgencyExploreGo.Data.Models.Trip", "Trip")
+                    b.HasOne("TravelAgencyExploreGo.Data.Models.Entities.Trip", "Trip")
                         .WithMany("Bookings")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("TripId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("TravelAgencyExploreGo.Data.Models.User", "User")
+                    b.HasOne("TravelAgencyExploreGo.Data.Models.Entities.User", "User")
                         .WithMany("Bookings")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -417,9 +422,9 @@ namespace TravelAgencyExploreGo.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Trip", b =>
+            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.Trip", b =>
                 {
-                    b.HasOne("TravelAgencyExploreGo.Data.Models.Destination", "Destination")
+                    b.HasOne("TravelAgencyExploreGo.Data.Models.Entities.Destination", "Destination")
                         .WithMany("Trips")
                         .HasForeignKey("DestinationId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -428,17 +433,17 @@ namespace TravelAgencyExploreGo.Migrations
                     b.Navigation("Destination");
                 });
 
-            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Destination", b =>
+            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.Destination", b =>
                 {
                     b.Navigation("Trips");
                 });
 
-            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Trip", b =>
+            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.Trip", b =>
                 {
                     b.Navigation("Bookings");
                 });
 
-            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.User", b =>
+            modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.User", b =>
                 {
                     b.Navigation("Bookings");
                 });

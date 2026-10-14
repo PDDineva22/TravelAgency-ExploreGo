@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using TravelAgencyExploreGo.Data;
 using TravelAgencyExploreGo.Data.Models;
+using TravelAgencyExploreGo.Data.Models.Entities;
 
 namespace TravelAgencyExploreGo
 {

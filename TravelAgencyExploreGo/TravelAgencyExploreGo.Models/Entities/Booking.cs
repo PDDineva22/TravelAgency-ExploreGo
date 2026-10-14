@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using TravelAgencyExploreGo.Common;
 using TravelAgencyExploreGo.Data.Models.Enums;
 
-namespace TravelAgencyExploreGo.Data.Models
+namespace TravelAgencyExploreGo.Data.Models.Entities
 {
     public class Booking
     {
@@ -20,11 +20,11 @@ namespace TravelAgencyExploreGo.Data.Models
 
         public DateTime BookingDate { get; set; } = DateTime.UtcNow;
 
-        [Range(EntityValidation.bookingPeopleCountValueMin, EntityValidation.bookingPeopleCountValueMax)]
+        [Range(EntityValidation.BookingPeopleCountValueMin, EntityValidation.BookingPeopleCountValueMax)]
         public int PeopleCount { get; set; }
 
-        [Range(typeof(decimal), EntityValidation.bookingTotalPriceValueMin, EntityValidation.bookingTotalPriceValueMax)]
+        [Range(typeof(decimal), EntityValidation.BookingTotalPriceValueMin, EntityValidation.BookingTotalPriceValueMax)]
         public decimal TotalPrice { get; set; }
-        public virtual BookingStatus BookingStatus { get; set; } = BookingStatus.Panding;
+        public BookingStatus BookingStatus { get; set; } = BookingStatus.Pending;
     }
 }

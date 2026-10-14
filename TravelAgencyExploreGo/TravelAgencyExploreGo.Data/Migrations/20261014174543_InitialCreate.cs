@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TravelAgencyExploreGo.Migrations
+namespace TravelAgencyExploreGo.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -222,8 +222,8 @@ namespace TravelAgencyExploreGo.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Bookings_Trips_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Bookings_Trips_TripId",
+                        column: x => x.TripId,
                         principalTable: "Trips",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -267,6 +267,11 @@ namespace TravelAgencyExploreGo.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bookings_TripId",
+                table: "Bookings",
+                column: "TripId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_UserId",

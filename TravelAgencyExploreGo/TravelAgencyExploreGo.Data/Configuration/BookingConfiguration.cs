@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TravelAgencyExploreGo.Common;
-using TravelAgencyExploreGo.Data.Models;
+using TravelAgencyExploreGo.Data.Models.Entities;
 
-namespace TravelAgencyExploreGo.Configuration
+namespace TravelAgencyExploreGo.Data.Configuration
 {
 
     public class BookingConfiguration : IEntityTypeConfiguration<Booking>
@@ -16,7 +16,7 @@ namespace TravelAgencyExploreGo.Configuration
             entity
                 .Property(b => b.PeopleCount)
                 .IsRequired()
-                .HasMaxLength(EntityValidation.bookingPeopleCountValueMax);
+                .HasMaxLength(EntityValidation.BookingPeopleCountValueMax);
 
             entity
                 .Property(b => b.TotalPrice)
@@ -32,7 +32,7 @@ namespace TravelAgencyExploreGo.Configuration
             entity
                 .HasOne(b => b.Trip)
                 .WithMany(t => t.Bookings)
-                .HasForeignKey(b => b.UserId)
+                .HasForeignKey(b => b.TripId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

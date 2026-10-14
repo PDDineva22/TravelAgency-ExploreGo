@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using TravelAgencyExploreGo.Data.Models;
+using TravelAgencyExploreGo.Data.Models.Entities;
 
 namespace TravelAgencyExploreGo.Data
 {
@@ -16,7 +18,7 @@ namespace TravelAgencyExploreGo.Data
             const string adminPassword = "Admin123!";
 
             // Create Admin role (if doesn't exist already)
-            if(!await roleManager.RoleExistsAsync(adminRole))
+            if (!await roleManager.RoleExistsAsync(adminRole))
             {
                 IdentityRole<Guid> role = new IdentityRole<Guid>(adminRole)
                 {
@@ -34,8 +36,7 @@ namespace TravelAgencyExploreGo.Data
             // Find Admin user (if there is any)
             User? admin = await userManager.FindByEmailAsync(adminEmail);
 
-            // Create Admin if doesn't exist
-            if(admin == null)
+            if (admin == null)
             {
                 admin = new User
                 {
@@ -47,21 +48,27 @@ namespace TravelAgencyExploreGo.Data
                     LastName = "Admin"
                 };
 
-                IdentityResult userResult = await userManager.CreateAsync(admin, adminPassword);
+                IdentityResult createResult =
+                    await userManager.CreateAsync(admin, adminPassword);
 
-                if (!userResult.Succeeded)
+                if (!createResult.Succeeded)
                 {
-                    throw new Exception(string.Join(", ", userResult.Errors.Select(e => e.Description)));
+                    throw new InvalidOperationException(
+                        string.Join(", ",
+                            createResult.Errors.Select(e => e.Description)));
                 }
+            }
 
-                if(!await userManager.IsInRoleAsync(admin, adminRole))
+            if (!await userManager.IsInRoleAsync(admin, adminRole))
+            {
+                IdentityResult roleResult =
+                    await userManager.AddToRoleAsync(admin, adminRole);
+
+                if (!roleResult.Succeeded)
                 {
-                    IdentityResult roleResult = await userManager.AddToRoleAsync(admin, adminRole);
-
-                    if (!roleResult.Succeeded)
-                    {
-                        throw new Exception(string.Join(", ", roleResult.Errors.Select(e => e.Description)));
-                    }
+                    throw new InvalidOperationException(
+                        string.Join(", ",
+                            roleResult.Errors.Select(e => e.Description)));
                 }
             }
         }

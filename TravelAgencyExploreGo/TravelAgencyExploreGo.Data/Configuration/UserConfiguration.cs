@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TravelAgencyExploreGo.Common;
-using TravelAgencyExploreGo.Data.Models;
+using TravelAgencyExploreGo.Data.Models.Entities;
 
-namespace TravelAgencyExploreGo.Configuration
+namespace TravelAgencyExploreGo.Data.Configuration
 {
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {
@@ -12,12 +12,12 @@ namespace TravelAgencyExploreGo.Configuration
             entity
                 .Property(u => u.FirstName)
                 .IsRequired()
-                .HasMaxLength(EntityValidation.userFirstNameLengthMax);
+                .HasMaxLength(EntityValidation.UserFirstNameLengthMax);
 
             entity
                 .Property(u => u.LastName)
                 .IsRequired()
-                .HasMaxLength(EntityValidation.userLastNameLengthMax);
+                .HasMaxLength(EntityValidation.UserLastNameLengthMax);
 
             entity
                 .HasMany(u => u.Bookings)

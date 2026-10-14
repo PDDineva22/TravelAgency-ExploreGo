@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TravelAgencyExploreGo.Common;
 
-namespace TravelAgencyExploreGo.Data.Models
+namespace TravelAgencyExploreGo.Data.Models.Entities
 {
     public class Destination
     {
@@ -9,20 +9,20 @@ namespace TravelAgencyExploreGo.Data.Models
         public Guid Id { get; set; }
 
         [Required]
-        [StringLength(EntityValidation.destinationNameLengthMax, MinimumLength = EntityValidation.destinationNameLengthMin)]
+        [StringLength(EntityValidation.DestinationNameLengthMax, MinimumLength = EntityValidation.DestinationNameLengthMin)]
         public string Name { get; set; } = null!;
         
         [Required]
-        [StringLength(EntityValidation.destinationCountryLengthMax, MinimumLength = EntityValidation.destinationCountryLengthMin)]
+        [StringLength(EntityValidation.DestinationCountryLengthMax, MinimumLength = EntityValidation.DestinationCountryLengthMin)]
         public string Country { get; set; } = null!;
 
         [Required]
-        [StringLength(EntityValidation.destinationDescriptionLengthMax, MinimumLength = EntityValidation.destinationDescriptionLengthMin)]
+        [StringLength(EntityValidation.DestinationDescriptionLengthMax, MinimumLength = EntityValidation.DestinationDescriptionLengthMin)]
         public string Description { get; set; } = null!;
         
         [Url]
         [Required]
-        [MaxLength(EntityValidation.destinationImageUrlLengthMax)]
+        [MaxLength(EntityValidation.DestinationImageUrlLengthMax)]
         public string ImageUrl { get; set; } = null!;
         public virtual ICollection<Trip> Trips { get; set; } = new HashSet<Trip>();
     }
