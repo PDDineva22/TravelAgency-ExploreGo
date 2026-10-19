@@ -7,6 +7,8 @@
         public const int UserFirstNameLengthMin = 1;
         public const int UserLastNameLengthMax = 50;
         public const int UserLastNameLengthMin = 1;
+        public const int UserPasswordLengthMax = 8;
+        public const int UserPasswordLengthMin = 1;
         public const string UserEmailRegex = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
         // User End
 
