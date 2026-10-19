@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 using TravelAgencyExploreGo.Data;
-using TravelAgencyExploreGo.Data.Models;
 using TravelAgencyExploreGo.Data.Models.Entities;
+using TravelAgencyExploreGo.Services.Contracts;
+using TravelAgencyExploreGo.Services.Services;
 
 namespace TravelAgencyExploreGo
 {
@@ -12,6 +12,7 @@ namespace TravelAgencyExploreGo
         public static async Task Main(string[] args)
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddScoped<IUserService, UserService>();
 
             builder.Services.AddDbContext<TravelAgencyDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")));
