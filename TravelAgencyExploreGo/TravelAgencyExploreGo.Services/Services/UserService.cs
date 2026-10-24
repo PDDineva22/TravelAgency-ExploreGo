@@ -17,8 +17,8 @@ namespace TravelAgencyExploreGo.Services.Services
 
         public UserService(UserManager<User> userManager, SignInManager<User> signInManager)
         {
-            userManager = userManager;
-            signInManager = signInManager;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
         }
         public async Task<IdentityResult> RegisterAsync(RegisterDto model)
         {

@@ -1,54 +1,116 @@
 ﻿@model TravelAgencyExploreGo.Web.ViewModels.User.RegisterViewModel
-
-@{
-    ViewData["Title"] = "Register";
+@*Loads the CSS user file which is for Login and Register*@
+@section Styles {
+    <link rel="stylesheet" href="~/css/user.css" asp-append-version="true" />
 }
 
-<h2>Register</h2>
+<div class="auth-page">
+    <div class="auth-card">
+        <h1 class="auth-title">Create Account</h1>
+        <p class="auth-subtitle">
+            Join ExploreGo and start planning your next adventure.
+        </p>
 
-<form asp-controller="Account" asp-action="Register" method="post">
-    @Html.AntiForgeryToken()
+        <form asp-controller="User"
+              asp-action="Register"
+              method="post"
+              class="auth-form">
 
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="ModelOnly"></div>
 
-    <div class="mb-3">
-        <label asp-for="FirstName" class="form-label"></label>
-        <input asp-for="FirstName" class="form-control" />
-        <span asp-validation-for="FirstName" class="text-danger"></span>
-    </div>
+            <div class="mb-3">
+                <label asp-for="FirstName" class="form-label"></label>
+                <input asp-for="FirstName"
+                       class="form-control"
+                       placeholder="Enter your first name"
+                       autocomplete="given-name" />
+                <span asp-validation-for="FirstName"></span>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="LastName" class="form-label"></label>
-        <input asp-for="LastName" class="form-control" />
-        <span asp-validation-for="LastName" class="text-danger"></span>
-    </div>
+            <div class="mb-3">
+                <label asp-for="LastName" class="form-label"></label>
+                <input asp-for="LastName"
+                       class="form-control"
+                       placeholder="Enter your last name"
+                       autocomplete="family-name" />
+                <span asp-validation-for="LastName"></span>
+            </div>
 
-    <div class="mb-3">
-        <label asp-for="Email" class="form-label"></label>
-        <input asp-for="Email" class="form-control" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
 
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+
+                <input asp-for="Email"
+                       class="form-control"
+                       placeholder="Enter your email"
+                       autocomplete="email" />
+
+                <small class="form-text text-muted">
+                    Enter a valid email address, e.g. name@example.com.
+                </small>
+
+                <span asp-validation-for="Email" class="field-validation-error"></span>
+            </div>
+
+
+            
     <div class="mb-3">
         <label asp-for="Password" class="form-label"></label>
-        <input asp-for="Password" class="form-control" type="password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
+
+        <div class="password-wrapper">
+            <input asp-for="Password"
+                    class="form-control"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                    id="registerPassword" />
+
+            <button type="button"
+                    class="password-toggle"
+                    data-password-target="registerPassword"
+                    aria-label="Show password">
+                Show
+            </button>
+        </div>
+
+        <div class="password-requirements">
+    <p>Your password must contain:</p>
+    <ul>
+        <li data-rule="length">At least 6 characters</li>
+        <li data-rule="lowercase">At least one lowercase letter (a-z)</li>
+        <li data-rule="uppercase">At least one uppercase letter (A-Z)</li>
+        <li data-rule="digit">At least one digit (0-9)</li>
+        <li data-rule="special">At least one special character (!, #, &#64;, etc.)</li>
+        <li data-rule="spaces">No spaces</li>
+    </ul>
+</div>
+
+    <span asp-validation-for="Password" class="field-validation-error"></span>
+</div>
+
+
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <input asp-for="ConfirmPassword"
+                       class="form-control"
+                       placeholder="Confirm your password"
+                       autocomplete="new-password" />
+                <span asp-validation-for="ConfirmPassword"></span>
+            </div>
+
+            <button type="submit" class="auth-btn">
+                Create Account
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            Already have an account?
+            <a asp-controller="User"
+               asp-action="Login"
+               class="auth-link">Sign in</a>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="ConfirmPassword" class="form-label"></label>
-        <input asp-for="ConfirmPassword" class="form-control" type="password" />
-        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
-
-<p class="mt-3">
-    Already have an account?
-    <a asp-controller="Account" asp-action="Login">Login here</a>
-</p>
+</div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/user.js" asp-append-version="true"></script>
 }

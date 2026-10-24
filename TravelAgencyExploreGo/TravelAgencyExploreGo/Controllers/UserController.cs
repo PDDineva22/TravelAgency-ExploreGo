@@ -11,7 +11,7 @@ namespace TravelAgencyExploreGo.Web.Controllers
 
         public UserController(IUserService userService)
         {
-            userService = userService;
+            this.userService = userService;
         }
         public IActionResult Login()
         {

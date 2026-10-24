@@ -13,7 +13,7 @@ namespace TravelAgencyExploreGo.Web.ViewModels.User
         public string LastName { get; set; } = null!;
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Enter a valid email address. Please try again!")]
-        [RegularExpression(EntityValidation.UserEmailRegex, ErrorMessage = "Enter a valid email address.")]
+        [RegularExpression(EntityValidation.UserEmailRegex, ErrorMessage = "Enter a valid email address, e.g. name@example.com.")]
         public string Email { get; set; } = null!;
         [Required(ErrorMessage = "Password is required.")]
         [DataType(DataType.Password)]

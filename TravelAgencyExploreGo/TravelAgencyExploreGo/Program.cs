@@ -12,6 +12,7 @@ namespace TravelAgencyExploreGo
         public static async Task Main(string[] args)
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddScoped<IUserService, UserService>();
 
             builder.Services.AddDbContext<TravelAgencyDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -21,10 +22,20 @@ namespace TravelAgencyExploreGo
                 .AddEntityFrameworkStores<TravelAgencyDbContext>()
                 .AddDefaultTokenProviders();
 
+            // Requirements
             builder.Services.Configure<IdentityOptions>(options =>
             {
+                // Email requirements
                 options.User.RequireUniqueEmail = true;
+
+                // Password requirements
+                options.Password.RequiredLength = 6;
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireNonAlphanumeric = true;
             });
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

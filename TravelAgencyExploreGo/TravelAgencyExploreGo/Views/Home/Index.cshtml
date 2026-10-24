@@ -1,8 +1,59 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+}
+
+<section class="hero">
+    <div class="hero-slide active" style="background-image: url('/images/home/greece.png')"></div>
+    <div class="hero-slide" style="background-image: url('/images/home/italy.png')"></div>
+    <div class="hero-slide" style="background-image: url('/images/home/turkey.png')"></div>
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+        <h1>
+            Dream it.<br/>
+            <span>Book it.</span><br/>
+            Live it.
+        </h1>
+
+        <p>
+            Discover amazing destinations
+            and unforgettable experiences
+            with ExploreGo.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#" class="hero-primary">Explore Destination →</a>
+            <a href="#" class="hero-secondary">Exclusive Deals →</a>
+        </div>
+    </div>
+
+    <button class="hero-arrow hero-prev" type="button" aria-label="Previous slide">&#10094;</button>
+    <button class="hero-arrow hero-next" type="button" aria-label="Next slide">&#10095;</button>
+
+    <div class="hero-dots">
+        <button class="hero-dot active" type="button" aria-label="Slide 1"></button>
+        <button class="hero-dot" type="button" aria-label="Slide 2"></button>
+        <button class="hero-dot" type="button" aria-label="Slide 3"></button>
+    </div>
+</section>
+
+<section class="explore-section">
+    <div class="explore-cards">
+        <a href="#" class="explore-card">
+            <img src="/images/home/card-capadocia.png" alt="Destinations">
+
+            <div class="explore-card-content">
+
+            </div>
+        </a>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/js/home.js" asp-append-version="true"></script>
+}
