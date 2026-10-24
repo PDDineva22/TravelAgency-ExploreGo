@@ -1,0 +1,25 @@
+﻿using Microsoft.EntityFrameworkCore;
+using TravelAgencyExploreGo.Data;
+using TravelAgencyExploreGo.Data.Models.Entities;
+using TravelAgencyExploreGo.Services.Contracts;
+
+namespace TravelAgencyExploreGo.Services.Services
+{
+    public class TripService : ITripService
+    {
+        private readonly TravelAgencyDbContext dbContext;
+
+        public TripService(TravelAgencyDbContext dbContext)
+        {
+            this.dbContext = dbContext; 
+        }
+
+        public List<Trip> GetExclusiveDeals()
+        {
+            return dbContext.Trips
+                .Include(t => t.Destination)
+                .Where(t => t.DiscountPrice != null && t.DiscountPrice < t.Price)
+                .ToList();
+        }
+    }
+}

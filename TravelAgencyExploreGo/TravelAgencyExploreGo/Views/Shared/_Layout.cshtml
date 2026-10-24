@@ -6,6 +6,9 @@
     <title>@ViewData["Title"] - ExploreGo</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @*Here are the links for the custom font styles*@
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     @*Allows using more then one CSS or JS file*@
     @*There is no need to specify which CSS and JS file is going to be rendered here*@
     @await RenderSectionAsync("Styles", required: false)
@@ -13,16 +16,20 @@
 <body>
     <header>
         <nav class="explore-navbar">
-            <a asp-controller="Home" asp-action="Index" class="explore-logo">Explore<span>Go</span></a>
+            <a asp-controller="Home" asp-action="Index" class="explore-logo">
+                <img src="~/images/exploreGo-logo.png" alt="" class="navbar-logo">   
+            </a>
+
             <div class="explore-links">
-                <a href="#" class="comming-soon">Destinations</a>
-                <a href="#" class="comming-soon">Exclusive Deals</a>
-                <a href="#" class="comming-soon">About Us</a>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a href="#">Destinations</a>
+                <a href="#">Exclusive Deals</a>
+                <a href="#">About Us</a>
             </div>
-            <div class="exlore-actions">
+            <div class="explore-actions">
                 @if (User.Identity?.IsAuthenticated == true)
                 {
-                    <form asp-cotroller="User" asp-action="Logout" method="post">
+                    <form asp-controller="User" asp-action="Logout" method="post">
                         <button type="submit" class="login-btn">Log out</button>
                     </form>
                 }

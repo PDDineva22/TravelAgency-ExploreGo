@@ -17,21 +17,23 @@
         public const int DestinationNameLengthMin = 2;
         public const int DestinationCountryLengthMax = 20;
         public const int DestinationCountryLengthMin = 2;
-        public const int DestinationDescriptionLengthMax = 30;
-        public const int DestinationDescriptionLengthMin = 5;
+        public const int DestinationDescriptionLengthMax = 200;
+        public const int DestinationDescriptionLengthMin = 10;
         public const int DestinationImageUrlLengthMax = 500;
         // Destination End
 
         // Trip Begin
-        public const int TripTitleLengthMax = 20;
+        public const int TripTitleLengthMax = 100;
         public const int TripTitleLengthMin = 5;
         public const string TripPriceValueMax = "100000";
         public const string TripPriceValueMin = "0.10";
+        public const string TripDiscountPriceValueMax = "10000";
+        public const string TripDiscountPriceValueMin = "1";
         public const int TripAvailableSeatsCountMax = 500;
         public const int TripAvailableSeatsCountMin = 1;
         public const int TripImageUrlLengthMax = 500;
-        public const int TripDescriptionLengthMax = 30;
-        public const int TripDescriptionLengthMin = 3;
+        public const int TripDescriptionLengthMax = 200;
+        public const int TripDescriptionLengthMin = 10;
         // Trip End
 
         // Booking Begin

@@ -1,7 +1,7 @@
 ﻿:root {
     --navy: #061b35;
     --lime: #dfff00;
-    --white: #ffffff;
+    --cyan: #008fa6;
 }
 
 * {
@@ -10,95 +10,177 @@
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Outfit', sans-serif;
     background: var(--navy);
-    color: var(--white);
+    color: white;
 }
 
-/* Navbar */
+/* NAVBAR */
 
 .explore-navbar {
-    background: var(--lime);
-    padding: 15px 5%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    width: 100%;
+    min-height: 64px;
+    padding: 4px 3%;
+    gap: 28px;
+    background: var(--lime);
 }
 
 .explore-logo {
-    color: var(--navy);
-    font-size: 26px;
-    font-weight: bold;
-    text-decoration: none;
+    flex-shrink: 0;
 }
 
-    .explore-logo span {
-        color: #0891b2;
-    }
+.navbar-logo {
+    display: block;
+    width: 140px;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+}
 
-.explore-links,
-.explore-actions {
+/* LINKS */
+
+.explore-links {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 28px;
 }
 
     .explore-links a {
-        text-decoration: none;
+        position: relative;
         color: var(--navy);
-        font-weight: bold;
-        transition: color 0.3s;
+        font-size: 20px;
+        font-weight: 700;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: color .2s;
     }
 
         .explore-links a:hover {
-            color: #0891b2;
+            color: var(--cyan);
         }
+
+        .explore-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--cyan);
+            transition: width .2s;
+        }
+
+        .explore-links a:hover::after,
+        .explore-links a.active::after {
+            width: 100%;
+        }
+
+/* LOGIN / REGISTER */
+
+.explore-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+}
+
+    .explore-actions form {
+        margin: 0;
+    }
 
 .login-btn,
 .register-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 105px;
+    padding: 8px 20px;
+    border: 2px solid var(--navy);
+    border-radius: 25px;
+    font: 700 16px 'Outfit', sans-serif;
     text-decoration: none;
-    font-weight: bold;
+    white-space: nowrap;
     cursor: pointer;
+    transition: background .2s, color .2s;
 }
 
 .login-btn {
     background: transparent;
-    border: 1px solid var(--navy);
     color: var(--navy);
 }
 
-.register-btn {
-    background: var(--navy);
-    color: var(--white);
-    border: 1px solid var(--navy);
-}
+    .register-btn,
+    .login-btn:hover {
+        background: var(--navy);
+        color: white;
+    }
 
-/* Footer */
+        .register-btn:hover {
+            background: var(--cyan);
+            border-color: var(--cyan);
+            color: white;
+        }
+
+/* FOOTER */
 
 .explore-footer {
+    padding: 30px 20px;
     background: #032c3b;
     text-align: center;
-    padding: 30px;
-    margin-top: 50px;
 }
+
+    .explore-footer h3 {
+        font-size: 26px;
+        font-weight: 800;
+    }
 
     .explore-footer p {
         margin: 8px 0;
+        color: #cbd5e1;
     }
 
-@media (max-width: 850px) {
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
     .explore-navbar {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 15px;
     }
 
     .explore-links {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 12px;
+        gap: 16px;
+    }
+
+    .explore-actions {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar-logo {
+        width: 170px;
+    }
+
+    .explore-links a {
+        font-size: 16px;
+    }
+
+    .explore-actions {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .explore-links a,
+    .explore-links a::after,
+    .login-btn,
+    .register-btn {
+        transition: none;
     }
 }

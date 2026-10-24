@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TravelAgencyExploreGo.Data;
 using TravelAgencyExploreGo.Data.Models.Entities;
+using TravelAgencyExploreGo.Data.Seeding;
 using TravelAgencyExploreGo.Services.Contracts;
 using TravelAgencyExploreGo.Services.Services;
 
@@ -13,6 +14,7 @@ namespace TravelAgencyExploreGo
         {
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ITripService, TripService>();
 
             builder.Services.AddDbContext<TravelAgencyDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -45,6 +47,9 @@ namespace TravelAgencyExploreGo
             using (IServiceScope scope = app.Services.CreateScope())
             {
                 await IdentitySeeder.SeedAsync(scope.ServiceProvider);
+
+                TravelAgencyDbContext dbContext = scope.ServiceProvider.GetRequiredService<TravelAgencyDbContext>();
+                await ExploreGoSeeder.SeedAsync(dbContext);
             }
 
                 // Configure the HTTP request pipeline.

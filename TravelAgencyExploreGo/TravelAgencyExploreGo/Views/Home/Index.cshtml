@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<TravelAgencyExploreGo.Data.Models.Entities.Trip>
+@{
     ViewData["Title"] = "Home";
 }
 
@@ -44,15 +45,55 @@
 
 <section class="explore-section">
     <div class="explore-cards">
+
         <a href="#" class="explore-card">
             <img src="/images/home/card-capadocia.png" alt="Destinations">
 
             <div class="explore-card-content">
-
+                <div>
+                    <span class="card-subtitle">Explore</span>
+                    <h2>Destinations</h2>
+                    <p>
+                        Explore all countries we offer
+                        and find your next adventure.
+                    </p>
+                </div>
+                <span class="card-arrow">➜</span>
             </div>
         </a>
+
+        <a href="#" class="explore-card">
+            <img src="/images/home/card-germany.png" alt="Exclusive deals">
+            <div class="explore-card-content">
+                <div>
+                    <span class="card-subtitle">Exclusive</span>
+                    <h2>Deals</h2>
+                    <p>
+                        Amazing trips at special prices.
+                        Don't miss out!
+                    </p>
+                </div>
+                <span class="card-arrow">➜</span>
+            </div>
+        </a>
+
+        <a href="#" class="explore-card">
+            <img src="~/images/home/card-spain.png" alt="About Us">
+            <div class="explore-card-content">
+                <div>
+                    <h2>About Us</h2>
+                    <p>
+                        Learn more about our story
+                        and what makes us different.
+                    </p>    
+                </div>
+                <span class="card-arrow">➜</span>
+            </div>
+        </a>
+
     </div>
 </section>
+
 
 @section Scripts{
     <script src="~/js/home.js" asp-append-version="true"></script>

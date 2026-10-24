@@ -18,20 +18,18 @@ namespace TravelAgencyExploreGo.Data.Models.Entities
         public DateTime EndDate { get; set; }
         [Range(typeof(decimal), EntityValidation.TripPriceValueMin, EntityValidation.TripPriceValueMax)]
         public decimal Price { get; set; }
+        [Range(typeof(decimal), EntityValidation.TripDiscountPriceValueMin, EntityValidation.TripDiscountPriceValueMax)]
+        public decimal? DiscountPrice { get; set; }
         [Range(EntityValidation.TripAvailableSeatsCountMin, EntityValidation.TripAvailableSeatsCountMax)]
         public int AvailableSeats { get; set; }
         [Url]
         [Required]
         [MaxLength(EntityValidation.TripImageUrlLengthMax)]
-        public string ImageUrl1 { get; set; } = null!;
+        public string Image1 { get; set; } = null!;
         [Url]
         [Required]
         [MaxLength(EntityValidation.TripImageUrlLengthMax)]
-        public string ImageUrl2 { get; set; } = null!;
-        [Url]
-        [Required]
-        [MaxLength(EntityValidation.TripImageUrlLengthMax)]
-        public string ImageUrl3 { get; set; } = null!;
+        public string Image2 { get; set; } = null!;
         [ForeignKey(nameof(DestinationId))]
         public Guid DestinationId { get; set; }
         public virtual Destination Destination { get; set; } = null!;

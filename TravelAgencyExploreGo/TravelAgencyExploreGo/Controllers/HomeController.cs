@@ -1,21 +1,27 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+using TravelAgencyExploreGo.Data;
+using TravelAgencyExploreGo.Data.Models.Entities;
 using TravelAgencyExploreGo.Models;
+using TravelAgencyExploreGo.Services.Contracts;
 
 namespace TravelAgencyExploreGo.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ITripService tripService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ITripService tripService)
         {
-            _logger = logger;
+            this.tripService = tripService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Trip> deals = tripService.GetExclusiveDeals();
+
+            return View(deals);
         }
 
         public IActionResult Privacy()

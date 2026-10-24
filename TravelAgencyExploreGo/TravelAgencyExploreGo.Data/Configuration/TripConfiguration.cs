@@ -22,19 +22,16 @@ namespace TravelAgencyExploreGo.Data.Configuration
                 .HasPrecision(18, 2);
 
             entity
-                .Property(t => t.ImageUrl1)
-                .IsRequired()
-                .HasMaxLength(EntityValidation.TripImageUrlLengthMax);
+                .Property(t => t.DiscountPrice)
+                .HasPrecision(18, 2);
 
             entity
-                .Property(t => t.ImageUrl2)
-                .IsRequired()
-                .HasMaxLength(EntityValidation.TripImageUrlLengthMax);
+                .Property(t => t.Image1)
+                .IsRequired();
 
             entity
-                .Property(t => t.ImageUrl3)
-                .IsRequired()
-                .HasMaxLength(EntityValidation.TripImageUrlLengthMax);
+                .Property(t => t.Image2)
+                .IsRequired();
 
             entity
                 .Property(t => t.Description)

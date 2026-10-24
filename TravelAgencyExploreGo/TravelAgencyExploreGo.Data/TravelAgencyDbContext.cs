@@ -12,7 +12,6 @@ namespace TravelAgencyExploreGo.Data
         {
             
         }
-
         public virtual DbSet<Trip> Trips { get; set; } = null!;
         public virtual DbSet<Destination> Destinations { get; set; } = null!;
         public virtual DbSet<Booking> Bookings { get; set; } = null!;
