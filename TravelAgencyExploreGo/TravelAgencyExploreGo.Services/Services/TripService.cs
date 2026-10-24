@@ -14,6 +14,16 @@ namespace TravelAgencyExploreGo.Services.Services
             this.dbContext = dbContext; 
         }
 
+        public List<Trip> GetAllTrips()
+        {
+            return dbContext.Trips
+                .Include(t => t.Destination)
+                .OrderBy(t => t.StartDate)
+                .ThenBy(t => t.DiscountPrice)
+                .ThenByDescending(t => t.AvailableSeats)
+                .ToList();
+        }
+
         public List<Trip> GetExclusiveDeals()
         {
             return dbContext.Trips

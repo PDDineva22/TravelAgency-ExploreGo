@@ -1,0 +1,238 @@
+﻿/* TRIPS PAGE */
+
+.trips-page {
+    min-height: 100vh;
+    padding: 70px 7% 100px;
+    background: #061b35;
+    color: white;
+}
+
+/* HEADING */
+
+.trips-heading {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+    .trips-heading h1 {
+        font-family: 'Caveat', cursive;
+        font-size: 100px;
+        font-weight: 700;
+        margin: 0;
+        color: white;
+    }
+
+    .trips-heading p {
+        font-family: 'Nunito', sans-serif;
+        font-size: 21px;
+        color: #cbd5e1;
+        margin-top: 10px;
+    }
+
+/* CARDS GRID */
+
+.trips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+}
+
+/* TRIP CARD */
+
+.trip-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #102840;
+    border: 1px solid #29445b;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+    transition: transform .3s, box-shadow .3s;
+}
+
+    .trip-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(223, 255, 0, .3);
+    }
+
+/* IMAGE */
+
+.trip-image {
+    position: relative;
+    overflow: hidden;
+}
+
+    .trip-image img {
+        display: block;
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        transition: transform .4s;
+    }
+
+.trip-card:hover .trip-image img {
+    transform: scale(1.05);
+}
+
+/* DISCOUNT BADGE */
+
+.trip-discount {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 9px 15px;
+    border-radius: 10px;
+    background: #dfff00;
+    color: #061b35;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+/* CARD CONTENT */
+
+.trip-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 23px;
+}
+
+.trip-location {
+    color: #dfff00;
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.trip-info h2 {
+    margin: 10px 0;
+    color: white;
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.trip-description {
+    color: #cbd5e1;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* DATE AND SEATS */
+
+.trip-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: #dbe6f3;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+}
+
+/* PRICE AND BUTTON */
+
+.trip-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid #35506a;
+}
+
+.trip-price {
+    display: flex;
+    flex-direction: column;
+}
+
+    .trip-price del {
+        color: #94a3b8;
+        font-size: 16px;
+    }
+
+    .trip-price strong {
+        color: #dfff00;
+        font-size: 30px;
+        font-weight: 900;
+    }
+
+.trip-button {
+    display: inline-block;
+    padding: 12px 18px;
+    border-radius: 25px;
+    background: #dfff00;
+    color: #061b35;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background .3s, transform .3s;
+}
+
+    .trip-button:hover {
+        background: #efff65;
+        color: #061b35;
+        transform: translateY(-3px);
+    }
+
+/* EMPTY PAGE */
+
+.no-trips {
+    text-align: center;
+    color: #cbd5e1;
+    font-size: 22px;
+    margin-top: 40px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+    .trips-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .trips-page {
+        padding: 50px 5%;
+    }
+
+    .trips-heading h1 {
+        font-size: 60px;
+    }
+
+    .trips-heading p {
+        font-size: 17px;
+    }
+
+    .trips-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trip-image img {
+        height: 210px;
+    }
+
+    .trip-info h2 {
+        font-size: 24px;
+    }
+
+    .trip-price strong {
+        font-size: 26px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .trip-card,
+    .trip-image img,
+    .trip-button {
+        transition: none;
+    }
+}

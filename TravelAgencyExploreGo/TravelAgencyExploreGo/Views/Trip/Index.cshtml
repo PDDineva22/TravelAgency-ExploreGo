@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TravelAgencyExploreGo.Data.Models.Entities.Trip>
+
+@{
+    ViewData["Title"] = "Exclusive Deals";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/trip.css" asp-append-version="true" />
+}
+
+<section class="trips-page">
+
+    <div class="trips-heading">
+        <h1>Exclusive Deals</h1>
+    </div>
+
+    <div class="trips-grid">
+        @foreach (var trip in Model)
+        {
+            bool hasDiscount = trip.DiscountPrice.HasValue && trip.DiscountPrice.Value < trip.Price;
+            <div class="trip-card">
+                <div class="trip-image">
+                    <img src="@trip.Image1" alt="@trip.Title" />
+                    @if (hasDiscount)
+                    {
+                        decimal discount = Math.Round((trip.Price - trip.DiscountPrice!.Value) / trip.Price * 100);
+                        <span class="trip-discount">-@discount%</span>
+                    }
+                </div>
+
+                <div class="trip-info">
+
+                    <span class="trip-location">@trip.Destination.Name, @trip.Destination.Country</span>
+                    <h2>@trip.Title</h2>
+
+                    <p class="trip-description">@trip.Description</p>
+
+                    <div class="trip-details">
+                        <span>@trip.StartDate.ToString("dd MMM yyyy")</span>
+                        <span>@trip.AvailableSeats seats left</span>
+                    </div>
+
+                    <div class="trip-bottom">
+                        <div class="trip-price">
+                            @if (hasDiscount)
+                            {
+                                <del>$@trip.Price</del>
+                                <strong>$@trip.DiscountPrice</strong>
+                            }
+                            else
+                            {
+                                <strong>$@trip.Price</strong>
+                            }
+                        </div>
+                        <a href="#" class="trip-button">Book Now →</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    @if (!Model.Any())
+    {
+        <p class="no-trips">No trips available at the moment.</p>
+    }
+</section>
