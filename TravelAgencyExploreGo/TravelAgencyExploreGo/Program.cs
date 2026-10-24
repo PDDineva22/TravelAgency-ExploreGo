@@ -15,6 +15,7 @@ namespace TravelAgencyExploreGo
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ITripService, TripService>();
+            builder.Services.AddScoped<IDestinationsService, DestinationsService>();
 
             builder.Services.AddDbContext<TravelAgencyDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")));

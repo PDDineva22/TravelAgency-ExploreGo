@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TravelAgencyExploreGo.Data.Models.Entities.Destination>
+
+@{
+    ViewData["Title"] = "Destinations";
+    var countries = Model.GroupBy(d => d.Country);
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/destinations.css" asp-append-version="true" />
+}
+
+<section class="destinations-page">
+    <div class="destinations-heading">
+        <h1>Discover Destinations</h1>
+    </div>
+
+    <div class="countries-grid">
+        @foreach (var country in countries)
+        {
+            var firstDestination = country.First();
+
+            <div class="country-card">
+                <div class="country-main">
+                    <img src="@firstDestination.ImageUrl"
+                         alt="@country.Key"
+                         class="country-image" />
+
+                    <div class="country-info">
+                        <h2>Discover @country.Key</h2>
+
+                        <p class="country-places">
+                            @string.Join(", ", country.Select(d => d.Name))
+                        </p>
+
+                        <div class="country-bottom">
+                            <p>@firstDestination.Description</p>
+
+                            <a href="#" class="country-button">
+                                See Offers →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="country-side">
+                    <span>Country</span>
+                    <h3>@country.Key.ToUpper()</h3>
+                </div>
+            </div>
+        }
+    </div>
+</section>
