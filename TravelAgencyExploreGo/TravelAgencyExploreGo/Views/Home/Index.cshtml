@@ -94,6 +94,80 @@
     </div>
 </section>
 
+<section class="deals-section">
+    <div class="deals-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="deals-slogan">Dream it. Book it. Live it.</div>
+
+    <div class="deals-header">
+        <div>
+            <h2>Exclusive Deals</h2>
+        </div>
+        <a href="#" class="deals-view-all">View All Deals →</a>
+    </div>
+
+    <div class="deals-grid deals-carousel">
+        @foreach(var trip in Model)
+        {
+            decimal discount = Math.Round((trip.Price - trip.DiscountPrice!.Value)/ trip.Price * 100);
+
+            <div class="deal-card">
+                <div class="deal-image">
+                    <img src="@trip.Image1" alt="@trip.Title" />
+                </div>
+
+                <div class="deal-content">
+                    <p class="deal-location">
+                        @trip.Destination.Name, @trip.Destination.Country
+                    </p>
+
+                    <h3>@trip.Title</h3>
+
+                    <div class="deal-prices">
+                        <span class="old-price">$@trip.Price</span>
+                        <span class="new-price">$@trip.DiscountPrice</span>
+                    </div>
+
+                    <div class="deal-bottom">
+                    <a href="#" class="deal-button">Explore Trip →</a>
+                    <span class="deal-badge">~@discount%</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="reviews-section">
+    <h2>What Our Travelers Say</h2>
+    <p class="reviews-subtitle">Real stories. Unforgettable journeys.</p>
+
+    <div class="reviews-slider">
+        <button class="review-prev" type="button">&#10094;</button>
+
+        <div class="review-content">
+            <div class="review-starts">★★★★★</div>
+
+            <p class="review-text" id="reviewText">
+                "Our trip to Santorini was absolutely amazing!
+                Everything was perfectly organized."
+            </p>
+
+            <h3 id="reviewName">Emily Johnson</h3>
+            <span id="reviewPlace">Santorini, Greece</span>
+        </div>
+        <button class="review-next" type="button">&#10095;</button>
+    </div>
+    <div class="review-dots">
+        <span class="review-dot active"></span>
+        <span class="review-dot"></span>
+        <span class="review-dot"></span>
+    </div>
+</section>
 
 @section Scripts{
     <script src="~/js/home.js" asp-append-version="true"></script>

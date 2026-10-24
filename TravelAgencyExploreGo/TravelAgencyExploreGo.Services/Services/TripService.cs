@@ -19,6 +19,9 @@ namespace TravelAgencyExploreGo.Services.Services
             return dbContext.Trips
                 .Include(t => t.Destination)
                 .Where(t => t.DiscountPrice != null && t.DiscountPrice < t.Price)
+                .OrderBy(t => t.DiscountPrice)
+                .ThenBy(t => t.Title)
+                .Take(3)
                 .ToList();
         }
     }
