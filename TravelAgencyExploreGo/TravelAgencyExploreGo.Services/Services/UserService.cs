@@ -63,7 +63,7 @@ namespace TravelAgencyExploreGo.Services.Services
             }
             ContactDto contact = new ContactDto();
 
-            contact.FullName = $"{user.FirstName} {user.FirstName}";
+            contact.FullName = $"{user.FirstName} {user.LastName}";
             if(user.Email != null)
             {
                 contact.Email = user.Email;

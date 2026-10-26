@@ -1,27 +1,50 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Claims;
 using TravelAgencyExploreGo.Data;
 using TravelAgencyExploreGo.Data.Models.Entities;
 using TravelAgencyExploreGo.Models;
+using TravelAgencyExploreGo.Models.DTOs.User;
 using TravelAgencyExploreGo.Services.Contracts;
+using TravelAgencyExploreGo.Web.ViewModels.Home;
 
 namespace TravelAgencyExploreGo.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ITripService tripService;
+        private readonly IUserService userService;
+        private readonly IBookingService bookingService;
 
-        public HomeController(ITripService tripService)
+        public HomeController(ITripService tripService, IUserService userService, IBookingService bookingService)
         {
             this.tripService = tripService;
+            this.userService = userService;
+            this.bookingService = bookingService;
         }
 
         public IActionResult Index()
         {
-            List<Trip> deals = tripService.GetExclusiveDeals();
+            HomeViewModel model = new HomeViewModel();
 
-            return View(deals);
+            model.ExclusiveDeals = tripService.GetExclusiveDeals();
+            if(User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                Guid id;
+                if(Guid.TryParse(userId, out id))
+                {
+                    model.MyBookings = bookingService.GetUserBookings(id);
+                    ContactDto? contact = userService.GetUserContact(id);
+
+                    if(contact != null)
+                    {
+                        model.UserName = contact.FullName;
+                    }
+                }
+            }
+            return View(model);
         }
 
         public IActionResult Privacy()

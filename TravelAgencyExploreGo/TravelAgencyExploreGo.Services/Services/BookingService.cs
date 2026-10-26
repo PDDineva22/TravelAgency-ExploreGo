@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,6 +62,17 @@ namespace TravelAgencyExploreGo.Services.Services
             dbContext.SaveChanges();
 
             return true;
+        }
+        public List<Booking> GetUserBookings(Guid userId)
+        {
+            List<Booking> allBookings = dbContext.Bookings
+                .Include(b => b.Trip)
+                .Where(b => b.UserId == userId)
+                .OrderByDescending(b => b.TotalPrice)
+                .ThenByDescending(b => b.BookingDate)
+                .ToList();
+
+            return allBookings;
         }
     }
 }

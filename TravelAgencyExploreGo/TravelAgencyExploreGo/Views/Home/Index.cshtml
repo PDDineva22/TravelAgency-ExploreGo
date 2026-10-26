@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TravelAgencyExploreGo.Data.Models.Entities.Trip>
+﻿@model TravelAgencyExploreGo.Web.ViewModels.Home.HomeViewModel
 @{
     ViewData["Title"] = "Home";
 }
@@ -105,7 +105,7 @@
     </div>
 
     <div class="deals-grid deals-carousel">
-        @foreach(var trip in Model)
+        @foreach(var trip in Model.ExclusiveDeals)
         {
             decimal discount = Math.Round((trip.Price - trip.DiscountPrice!.Value)/ trip.Price * 100);
 
@@ -127,8 +127,8 @@
                     </div>
 
                     <div class="deal-bottom">
-                    <a href="#" class="deal-button">Explore Trip →</a>
-                    <span class="deal-badge">~@discount%</span>
+                        <a href="#" class="deal-button">Explore Trip →</a>
+                        <span class="deal-badge">~@discount%</span>
                     </div>
                 </div>
             </div>
@@ -162,6 +162,33 @@
         <span class="review-dot"></span>
     </div>
 </section>
+
+@if(User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <section class="my-bookings">
+        <h2>You @Model.UserName have booked</h2>
+        <div class="my-bookings-container">
+            @if (Model.MyBookings.Count == 0)
+            {
+                <p>You dont kave any bookings yet.</p>
+            }
+            else
+            {
+                @foreach(var booking in Model.MyBookings)
+                {
+                    <div class="my-booking-row">
+                        <img src="@booking.Trip.Image1" alt="@booking.Trip.Title" />
+                        <span class="my-booking-title">@booking.Trip.Title</span>
+                        <span>@booking.TotalPrice</span>
+                        <span class="my-booking-status">@booking.BookingStatus</span>
+
+                        <button type="button" class="my-booking-delete">X</button>
+                    </div>
+                }
+            }
+        </div>
+    </section>
+}
 
 @section Scripts{
     <script src="~/js/home.js" asp-append-version="true"></script>
