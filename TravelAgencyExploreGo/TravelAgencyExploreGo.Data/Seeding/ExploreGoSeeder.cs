@@ -1,11 +1,15 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TravelAgencyExploreGo.Data.Models.Entities;
 
 namespace TravelAgencyExploreGo.Data.Seeding
 {
     public class ExploreGoSeeder
     {
+        /// <summary>
+        /// Adds the default destinations and trips when the application starts
+        /// Checks the database before adding the information
+        /// so the same sample data is not inserted multiple times
+        /// </summary>
         public static async Task SeedAsync(TravelAgencyDbContext dbContext)
         {
             if (!await dbContext.Destinations.AnyAsync())
@@ -95,14 +99,13 @@ namespace TravelAgencyExploreGo.Data.Seeding
                 .ToDictionaryAsync(d => d.Name);
 
             var today = DateTime.Today;
-
-            Trip CreateTrip(string destinationName, string title,
-                string description, decimal price, decimal? discountPrice,
+            // Creates a trip using information from an existing destination
+            // The start and end dates are calculated relative to the current date
+            Trip CreateTrip(string destinationName, string title, string description, decimal price, decimal? discountPrice,
                 int seats, int startAfterDays, int duration)
             {
-                var destination = destinationsByName[destinationName];
-
-                return new Trip
+                Destination destination = destinationsByName[destinationName];
+                Trip newTrip = new Trip 
                 {
                     Id = Guid.NewGuid(),
                     Title = title,
@@ -116,9 +119,11 @@ namespace TravelAgencyExploreGo.Data.Seeding
                     Image1 = destination.ImageUrl,
                     Image2 = destination.ImageUrl
                 };
+
+                return newTrip;
             }
 
-            var trips = new List<Trip>
+            List<Trip> trips = new List<Trip>
             {
                 CreateTrip("Istanbul", "Discover Istanbul",
                     "Explore historic streets, beautiful mosques and the Bosphorus.",

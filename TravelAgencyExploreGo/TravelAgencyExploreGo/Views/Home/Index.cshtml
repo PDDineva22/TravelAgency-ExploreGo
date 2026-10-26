@@ -163,18 +163,19 @@
         <span class="review-dot"></span>
     </div>
 </section>
-
+@* Check if the user is logged in before displaying booking messages
+   TempData is used t o show success or error messages after a booking action*@
 @if(User.Identity != null && User.Identity.IsAuthenticated)
 {
     @if (TempData["BookingSuccess"] != null)
     {
         <p class="booking-success">@TempData["BookingSuccess"]</p>
     }
-
     @if (TempData["BookingError"] != null)
     {
         <p class="booking-error">@TempData["BookingError"]</p>
     }
+    @*Shows the logged user bookings and their current status*@
     <section class="my-bookings">
         <h2>You @Model.UserName have booked</h2>
         <div class="my-bookings-container">
@@ -195,9 +196,7 @@
                         @if (booking.BookingStatus != BookingStatus.Cancelled && booking.Trip.StartDate > DateTime.UtcNow)
                         {
                             <form asp-area="" asp-controller="Booking" asp-action="Cancel" method="post">
-
                                 <input type="hidden" name="id" value="@booking.Id" />
-
                                 <button type="submit" class="my-booking-delete">🗑</button>
                             </form>
                         }

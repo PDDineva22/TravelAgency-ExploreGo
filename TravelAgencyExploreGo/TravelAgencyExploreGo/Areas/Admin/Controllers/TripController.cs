@@ -36,6 +36,8 @@ namespace TravelAgencyExploreGo.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Trip trip)
         {
+            // Destination and Bookings are navigation properties
+            // They are not entered directly in the form, so their validation is removed
             ModelState.Remove("Destination");
             ModelState.Remove("Bookings");
             ValidateTrip(trip);
@@ -67,6 +69,8 @@ namespace TravelAgencyExploreGo.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Trip trip)
         {
+            // Destination and Bookings are navigation properties
+            // They are not entered directly in the form, so their validation is removed
             ModelState.Remove("Destination");
             ModelState.Remove("Bookings");
 
@@ -100,7 +104,10 @@ namespace TravelAgencyExploreGo.Web.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-
+        /// <summary>
+        /// Validates the information entered when creating or editing a trip
+        /// Checks that the dates are correct, the discount is valid, and the selected destination exists in the database
+        /// </summary>
         private void ValidateTrip(Trip trip)
         {
             if (trip.StartDate.Date < DateTime.Today)

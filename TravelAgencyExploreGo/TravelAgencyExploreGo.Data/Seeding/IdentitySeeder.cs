@@ -3,10 +3,15 @@ using Microsoft.Extensions.DependencyInjection;
 using TravelAgencyExploreGo.Data.Models;
 using TravelAgencyExploreGo.Data.Models.Entities;
 
-namespace TravelAgencyExploreGo.Data
+namespace TravelAgencyExploreGo.Data.Seeding
 {
     public class IdentitySeeder
     {
+        /// <summary>
+        /// Creates the default Admin role and administrator account.
+        /// Before creating them, it checks if they already exist
+        /// to prevent duplicate roles and users in the database
+        /// </summary>
         public static async Task SeedAsync(IServiceProvider serviceProvider)
         {
             UserManager<User> userManager = serviceProvider.GetRequiredService<UserManager<User>>();
@@ -20,6 +25,7 @@ namespace TravelAgencyExploreGo.Data
             // Create Admin role (if doesn't exist already)
             if (!await roleManager.RoleExistsAsync(adminRole))
             {
+                // Create it only if it is missing
                 IdentityRole<Guid> role = new IdentityRole<Guid>(adminRole)
                 {
                     Id = Guid.NewGuid()
@@ -48,9 +54,7 @@ namespace TravelAgencyExploreGo.Data
                     LastName = "Admin"
                 };
 
-                IdentityResult createResult =
-                    await userManager.CreateAsync(admin, adminPassword);
-
+                IdentityResult createResult = await userManager.CreateAsync(admin, adminPassword);
                 if (!createResult.Succeeded)
                 {
                     throw new InvalidOperationException(

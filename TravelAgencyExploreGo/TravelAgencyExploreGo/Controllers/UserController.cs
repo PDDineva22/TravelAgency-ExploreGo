@@ -25,7 +25,6 @@ namespace TravelAgencyExploreGo.Web.Controllers
             {
                 return View(model);
             }
-
             LoginDto loginDto = new LoginDto
             {
                 Email = model.Email,
@@ -37,7 +36,6 @@ namespace TravelAgencyExploreGo.Web.Controllers
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(string.Empty, "Invalid email or password.");
-
                 return View(model);
             }
             return RedirectToAction("Index", "Home");
@@ -70,6 +68,8 @@ namespace TravelAgencyExploreGo.Web.Controllers
             {
                 foreach(var error in result.Errors)
                 {
+                    // AddModelError adds an error message to ModelState
+                    // it will be displayed as a general validation error
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
 

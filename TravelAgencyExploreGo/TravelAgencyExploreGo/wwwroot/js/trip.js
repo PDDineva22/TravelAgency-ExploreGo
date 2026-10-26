@@ -1,5 +1,5 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
-
+﻿// Main role: Open the booking window and fill it with information about the trip selected by the duser
+document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("bookingModal");
     const peopleInput = document.getElementById("peopleCount");
     const plusButton = document.getElementById("increasePeople");
@@ -12,8 +12,8 @@
 
     bookButtons.forEach(function (button) {
 
-        button.addEventListener("click", function () {
-
+        button.addEventListener("click", function ()
+        {
             price = Number(button.dataset.price);
             availableSeats = Number(button.dataset.seats);
 
@@ -24,8 +24,8 @@
             document.getElementById("bookingDates").textContent =
                 button.dataset.start + " - " + button.dataset.end;
 
-            if (peopleInput != null) {
-
+            if (peopleInput != null)
+            {
                 document.getElementById("bookingTripId").value = button.dataset.id;
                 document.getElementById("bookingPrice").textContent = "$" + price.toFixed(2);
 
@@ -44,10 +44,10 @@
 
     function updateTotal() {
 
-        if (peopleInput == null) {
+        if (peopleInput == null)
+        {
             return;
         }
-
         let people = Number(peopleInput.value);
 
         document.getElementById("bookingTotal").textContent = "$" + (price * people).toFixed(2);
@@ -56,7 +56,8 @@
         minusButton.disabled = people <= 1;
     }
 
-    if (plusButton != null) {
+    if (plusButton != null)
+   {
 
         plusButton.addEventListener("click", function () {
 
@@ -68,9 +69,10 @@
             }
         });
     }
-
-    if (minusButton != null) {
-
+    // Calculate the total booking price based on the number of travelers
+    // Also enable or disable the buttons depending on the available seats
+    if (minusButton != null)
+    {
         minusButton.addEventListener("click", function () {
 
             let people = Number(peopleInput.value);
@@ -81,7 +83,6 @@
             }
         });
     }
-
     function closeModal() {
         modal.classList.remove("open");
     }
@@ -92,7 +93,8 @@
 
     modal.addEventListener("click", function (event) {
 
-        if (event.target == modal) {
+        if (event.target == modal)
+        {
             closeModal();
         }
     });

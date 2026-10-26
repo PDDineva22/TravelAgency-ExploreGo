@@ -35,15 +35,15 @@
             <div class="trip-card">
                 <div class="trip-image">
                     <img src="@trip.Image1" alt="@trip.Title" />
+                    @*if a discount exists, Math.Round() calculates the discount percentage,
+                            which is then displayed as a badge on the trip image*@
                     @if (hasDiscount)
                     {
                         decimal discount = Math.Round((trip.Price - trip.DiscountPrice!.Value) / trip.Price * 100);
                         <span class="trip-discount">-@discount%</span>
                     }
                 </div>
-
                 <div class="trip-info">
-
                     <span class="trip-location">@trip.Destination.Name, @trip.Destination.Country</span>
                     <h2>@trip.Title</h2>
 
@@ -67,16 +67,16 @@
                             }
                         </div>
                         <button type="button"
-                        class="trip-button book-trip-button"
-                        data-id="@trip.Id"
-                        data-title="@trip.Title"
-                        data-location="@trip.Destination.Name, @trip.Destination.Country"
-                        data-image="@trip.Image2"
-                        data-price="@price.ToString(System.Globalization.CultureInfo.InvariantCulture)"
-                        data-seats="@trip.AvailableSeats"
-                        data-start="@trip.StartDate.ToString("dd MMM yyyy")"
-                        data-end="@trip.EndDate.ToString("dd MMM yyyy")"
-                        disabled="@(trip.AvailableSeats <= 0 || trip.StartDate <= DateTime.UtcNow)">
+                            class="trip-button book-trip-button"
+                            data-id="@trip.Id"
+                            data-title="@trip.Title"
+                            data-location="@trip.Destination.Name, @trip.Destination.Country"
+                            data-image="@trip.Image2"
+                            data-price="@price.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+                            data-seats="@trip.AvailableSeats"
+                            data-start="@trip.StartDate.ToString("dd MMM yyyy")"
+                            data-end="@trip.EndDate.ToString("dd MMM yyyy")"
+                            disabled="@(trip.AvailableSeats <= 0 || trip.StartDate <= DateTime.UtcNow)">
                             Book Now →
                         </button>
                     </div>
@@ -89,6 +89,8 @@
         <p class="no-trips">No trips available at the moment.</p>
     }
 </section>
+@*Dialog window where users can choose the number of travelers
+   and send a booking request for the selected trip*@
 <div class="booking-overlay" id="bookingModal">
     <div class="booking-dialog">
         <button type="button" id="closeBooking" class="booking-close">X</button>

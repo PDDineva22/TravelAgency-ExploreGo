@@ -24,6 +24,7 @@ namespace TravelAgencyExploreGo.Controllers
             this.bookingService = bookingService;
         }
 
+        // Load personal booking information only for logged-in users
         public IActionResult Index()
         {
             HomeViewModel model = new HomeViewModel();
@@ -31,6 +32,7 @@ namespace TravelAgencyExploreGo.Controllers
             model.ExclusiveDeals = tripService.GetExclusiveDeals();
             if(User.Identity != null && User.Identity.IsAuthenticated)
             {
+                // Each user should see only their own reservations on the home page
                 string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 Guid id;
                 if(Guid.TryParse(userId, out id))

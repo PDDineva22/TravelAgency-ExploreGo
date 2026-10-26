@@ -70,7 +70,7 @@ namespace TravelAgencyExploreGo
             app.UseAuthentication();
             app.UseAuthorization();
 
-
+            // This route allows admin pages and normal website pages to use different URLs
             app.MapControllerRoute(
                 name: "areas",
                 pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");

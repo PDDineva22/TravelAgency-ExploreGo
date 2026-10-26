@@ -22,6 +22,11 @@ namespace TravelAgencyExploreGo.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        /// <summary>
+        /// Allows an administrator to approve a pending booking request.
+        /// Calls the booking service to confirm the reservation
+        /// and a message showing whether the operation was successful or not
+        /// </summary>
         public IActionResult Approve(Guid id)
         {
             bool isApproved = bookingService.ConfirmBooking(id);
@@ -38,6 +43,11 @@ namespace TravelAgencyExploreGo.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        /// <summary>
+        /// Allows an administrator to reject a pending booking request
+        /// The request is marked as Cancelled, and the administrator
+        /// receives a message showing the result of the operation
+        /// </summary>
         public IActionResult Reject(Guid id)
         {
             bool isRejected = bookingService.RejectBooking(id);

@@ -29,15 +29,10 @@ namespace TravelAgencyExploreGo.Services.Services
         {
             Destination? destination = dbContext.Destinations.Find(id);
 
-            if (destination == null)
-            {
-                return false;
-            }
+            if (destination == null) return false;
+
             bool hasTrips = dbContext.Trips.Any(t => t.DestinationId == id);
-            if (hasTrips)
-            {
-                return false;
-            }
+            if (hasTrips) return false;
 
             dbContext.Destinations.Remove(destination);
             dbContext.SaveChanges();
@@ -48,10 +43,8 @@ namespace TravelAgencyExploreGo.Services.Services
         {
             Destination? existing = dbContext.Destinations.Find(destination.Id);
 
-            if (existing == null)
-            {
-                return false;
-            }
+            if (existing == null) return false;
+
             existing.Name = destination.Name;
             existing.Country = destination.Country;
             existing.Description = destination.Description;
@@ -67,12 +60,14 @@ namespace TravelAgencyExploreGo.Services.Services
         }
         public List<Destination> GetAllDestinations()
         {
-            return dbContext.Destinations
+            List<Destination> destinations = dbContext.Destinations
                 .OrderBy(d => d.Country)
                 .ThenBy(d => d.Name)
                 .ThenBy(d => d.Country)
                 .ThenByDescending(d => d.Description)
                 .ToList();
+
+            return destinations;
         }
     }
 }

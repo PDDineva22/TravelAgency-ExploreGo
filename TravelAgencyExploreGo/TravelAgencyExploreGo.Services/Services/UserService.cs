@@ -51,7 +51,11 @@ namespace TravelAgencyExploreGo.Services.Services
         {
             await signInManager.SignOutAsync();
         }
-
+        /// <summary>
+        /// Gets the contact information of a specific user
+        /// Returns their contacts,
+        /// which are displayed when the user makes a booking
+        /// </summary>
         public ContactDto? GetUserContact(Guid userId)
         {
             User? user = userManager.Users
