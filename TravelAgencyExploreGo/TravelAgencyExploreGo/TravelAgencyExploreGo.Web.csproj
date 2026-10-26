@@ -22,4 +22,8 @@
     <ProjectReference Include="..\TravelAgencyExploreGo.Services\TravelAgencyExploreGo.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Views\Trip\" />
+  </ItemGroup>
+
 </Project>

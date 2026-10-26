@@ -23,11 +23,13 @@
 
             <div class="explore-links">
                 <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                <a asp-area="" asp-controller="Destinations" aps-action="Index">Destinations</a>
+                <a asp-area="" asp-controller="Destinations" asp-action="Index">Destinations</a>
                 <a asp-area="" asp-controller="Trip" asp-action="Index">Exclusive Deals</a>
                 @if (User.IsInRole("Admin"))
                 {
-                    <a asp-area="Admin" asp-controller="Booking" asp-action="Index">Admin Panel</a>
+                    <a asp-area="Admin" asp-controller="Booking" asp-action="Index">Bookings</a>
+                    <a asp-area="Admin" asp-controller="Trips" asp-action="Index">Manage Trips</a>
+                    <a asp-area="Admin" asp-controller="Destinations" asp-action="Index">Manage Destinations</a>
                 }
             </div>
             <div class="explore-actions">
@@ -39,8 +41,8 @@
                 }
                 else
                 {
-                    <a asp-controller="User" asp-action="Login" class="login-btn">Log in</a>
-                    <a asp-controller="User" asp-action="Register" class="register-btn">Register</a>
+                    <a asp-area="" asp-controller="User" asp-action="Login" class="login-btn">Log in</a>
+                    <a asp-area="" asp-controller="User" asp-action="Register" class="register-btn">Register</a>
                 }
             </div>
         </nav>

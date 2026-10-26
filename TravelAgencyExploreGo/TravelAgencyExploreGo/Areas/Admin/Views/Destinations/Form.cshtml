@@ -1,0 +1,60 @@
+﻿@model TravelAgencyExploreGo.Data.Models.Entities.Destination
+
+@{
+    ViewData["Title"] = "Destination";
+}
+
+<section class="admin-bookings">
+
+    <h1>Destination</h1>
+
+    @if (Model.Id == Guid.Empty)
+    {
+        <form asp-area="Admin" asp-controller="Destinations" asp-action="Create" method="post">
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <label>Name</label>
+            <input asp-for="Name" class="form-control" />
+
+            <label>Country</label>
+            <input asp-for="Country" class="form-control" />
+
+            <label>Description</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+
+            <label>Image URL</label>
+            <input asp-for="ImageUrl" class="form-control" />
+
+            <button type="submit" class="btn btn-success">Add Destination</button>
+        </form>
+    }
+    else
+    {
+        <form asp-area="Admin" asp-controller="Destinations" asp-action="Edit" method="post">
+
+            <input type="hidden" asp-for="Id" />
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <label>Name</label>
+            <input asp-for="Name" class="form-control" />
+
+            <label>Country</label>
+            <input asp-for="Country" class="form-control" />
+
+            <label>Description</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+
+            <label>Image URL</label>
+            <input asp-for="ImageUrl" class="form-control" />
+
+            <button type="submit" class="btn btn-success">Save Changes</button>
+        </form>
+    }
+
+    <a asp-area="Admin" asp-controller="Destinations" asp-action="Index" class="btn btn-secondary">
+        Back
+    </a>
+
+</section>

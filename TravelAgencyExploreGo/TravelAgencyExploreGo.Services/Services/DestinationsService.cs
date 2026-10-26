@@ -27,7 +27,7 @@ namespace TravelAgencyExploreGo.Services.Services
 
         public bool DeleteDestination(Guid id)
         {
-            Destination? destination = dbContext.Destinations.Find(Id);
+            Destination? destination = dbContext.Destinations.Find(id);
 
             if (destination == null)
             {
