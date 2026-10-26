@@ -24,5 +24,9 @@ namespace TravelAgencyExploreGo.Web.ViewModels.User
         [DataType(DataType.Password)]
         [Compare(nameof(Password), ErrorMessage = "Passwords are not the same! Please try again!")]
         public string ConfirmPassword { get; set; } = null!;
+        [Required(ErrorMessage = "Plese enter phone number to communicate with.")]
+        [StringLength(EntityValidation.UserPhoneNumberLengthMax, MinimumLength = EntityValidation.UserPhoneNumberLengthMin,
+            ErrorMessage = "Phone number must be between 10 and 20(for international numbers) characters.")]
+        public string PhoneNumber { get; set; } = null!;
     }
 }

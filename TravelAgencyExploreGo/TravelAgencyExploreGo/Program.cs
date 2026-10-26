@@ -16,6 +16,7 @@ namespace TravelAgencyExploreGo
             builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<ITripService, TripService>();
             builder.Services.AddScoped<IDestinationsService, DestinationsService>();
+            builder.Services.AddScoped<IBookingService, BookingService>();
 
             builder.Services.AddDbContext<TravelAgencyDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")));

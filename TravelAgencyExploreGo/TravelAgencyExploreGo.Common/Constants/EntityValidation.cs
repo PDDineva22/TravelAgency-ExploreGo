@@ -10,6 +10,8 @@
         public const int UserPasswordLengthMax = 8;
         public const int UserPasswordLengthMin = 1;
         public const string UserEmailRegex = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+        public const int UserPhoneNumberLengthMax = 20;
+        public const int UserPhoneNumberLengthMin = 10;
         // User End
 
         // Destination Begin

@@ -72,31 +72,32 @@
             </button>
         </div>
 
-        <div class="password-requirements">
-    <p>Your password must contain:</p>
-    <ul>
-        <li data-rule="length">At least 6 characters</li>
-        <li data-rule="lowercase">At least one lowercase letter (a-z)</li>
-        <li data-rule="uppercase">At least one uppercase letter (A-Z)</li>
-        <li data-rule="digit">At least one digit (0-9)</li>
-        <li data-rule="special">At least one special character (!, #, &#64;, etc.)</li>
-        <li data-rule="spaces">No spaces</li>
-    </ul>
-</div>
-
+    <div class="password-requirements">
+        <p>Your password must contain:</p>
+        <ul>
+            <li data-rule="length">At least 6 characters</li>
+            <li data-rule="lowercase">At least one lowercase letter (a-z)</li>
+            <li data-rule="uppercase">At least one uppercase letter (A-Z)</li>
+            <li data-rule="digit">At least one digit (0-9)</li>
+            <li data-rule="special">At least one special character (!, #, &#64;, etc.)</li>
+            <li data-rule="spaces">No spaces</li>
+        </ul>
+    </div>
     <span asp-validation-for="Password" class="field-validation-error"></span>
 </div>
-
-
-            <div class="mb-3">
-                <label asp-for="ConfirmPassword" class="form-label"></label>
-                <input asp-for="ConfirmPassword"
-                       class="form-control"
-                       placeholder="Confirm your password"
-                       autocomplete="new-password" />
-                <span asp-validation-for="ConfirmPassword"></span>
-            </div>
-
+        <div class="mb-3">
+            <label asp-for="ConfirmPassword" class="form-label"></label>
+            <input asp-for="ConfirmPassword"
+                    class="form-control"
+                    placeholder="Confirm your password"
+                    autocomplete="new-password" />
+            <span asp-validation-for="ConfirmPassword"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+            <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="+359 868 123 456" autocomplete="tel" />
+            <span asp-validation-for="PhoneNumber" class="field-validation-error"></span>
+        </div>
             <button type="submit" class="auth-btn">
                 Create Account
             </button>

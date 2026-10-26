@@ -7,7 +7,7 @@ namespace TravelAgencyExploreGo.Services.Contracts
     {
         Task<IdentityResult> RegisterAsync(RegisterDto model);
         Task<SignInResult> LoginAsync(LoginDto model);
-
+        ContactDto? GetUserContact(Guid userId);
         Task LogoutAsync();
     }
 }

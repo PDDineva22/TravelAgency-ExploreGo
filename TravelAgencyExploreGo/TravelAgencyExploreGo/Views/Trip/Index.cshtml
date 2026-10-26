@@ -9,15 +9,29 @@
 }
 
 <section class="trips-page">
-
     <div class="trips-heading">
         <h1>Exclusive Deals</h1>
     </div>
+
+    @if (TempData["BookingSuccess"] != null)
+    {
+        <p class="booking-success">@TempData["BookingSuccess"]</p>
+    }
+    @if (TempData["BookingError"] != null)
+    {
+        <p class="booking-error">@TempData["BookingError"]</p>
+    }
 
     <div class="trips-grid">
         @foreach (var trip in Model)
         {
             bool hasDiscount = trip.DiscountPrice.HasValue && trip.DiscountPrice.Value < trip.Price;
+
+            decimal price = trip.Price;
+            if (hasDiscount)
+            {
+                price = trip.DiscountPrice.Value;
+            }
             <div class="trip-card">
                 <div class="trip-image">
                     <img src="@trip.Image1" alt="@trip.Title" />
@@ -52,7 +66,19 @@
                                 <strong>$@trip.Price</strong>
                             }
                         </div>
-                        <a href="#" class="trip-button">Book Now →</a>
+                        <button type="button"
+                        class="trip-button book-trip-button"
+                        data-id="@trip.Id"
+                        data-title="@trip.Title"
+                        data-location="@trip.Destination.Name, @trip.Destination.Country"
+                        data-image="@trip.Image2"
+                        data-price="@price.ToString(System.Globalization.CultureInfo.InvariantCulture)"
+                        data-seats="@trip.AvailableSeats"
+                        data-start="@trip.StartDate.ToString("dd MMM yyyy")"
+                        data-end="@trip.EndDate.ToString("dd MMM yyyy")"
+                        disabled="@(trip.AvailableSeats <= 0 || trip.StartDate <= DateTime.UtcNow)">
+                            Book Now →
+                        </button>
                     </div>
                 </div>
             </div>
@@ -63,3 +89,61 @@
         <p class="no-trips">No trips available at the moment.</p>
     }
 </section>
+<div class="booking-overlay" id="bookingModal">
+    <div class="booking-dialog">
+        <button type="button" id="closeBooking" class="booking-close">X</button>
+        <div class="booking-picture">
+            <img id="bookingImage" src="" alt="Trip image" />
+        </div>
+        <div class="booking-content">
+            <h2>Book your trip</h2>
+            <h3 id="bookingTripTitle"></h3>
+            <p id="bookingLocation"></p>
+            <p id="bookingDates"></p>
+
+            @if(User.Identity != null && User.Identity.IsAuthenticated)
+            {
+                <form asp-controller="Booking" asp-action="Create" method="post">
+                    <input type="hidden" name="TripId" id="bookingTripId" />
+                    <div class="booking-field">
+                        <label>Full Name</label>
+                        <input type="text" value="@ViewBag.FullName" readonly />
+                    </div>
+                    <div class="booking-field">
+                        <label>Email</label>
+                        <input type="email" value="@ViewBag.Email" readonly />
+                    </div>
+                    <div class="booking-field">
+                        <label>Phone Number</label>
+                        <input type="tel" value="@ViewBag.PhoneNumber" readonly />
+                    </div>
+                    <div class="booking-field">
+                        <label>Number of Travelers</label>
+                        <div class="booking-counter">
+                            <button type="button" id="decreasePeople">-</button>
+                            <input type="number" id="peopleCount" name="PeopleCount" value="1" min="1" readonly />
+
+                            <button type="button" id="increasePeople">+</button>
+                        </div>
+                        <small id="bookingSeats"></small>
+                    </div>
+                    <div class="booking-prices">
+                        <p>Price per person: <strong id="bookingPrice"></strong></p>
+                        <p>Total Price: <strong id="bookingTotal"></strong></p>
+                    </div>
+
+                    <button type="submit" class="booking-submit">Submit Booking Request</button>
+                    <p class="booking-notice">Yout booking request will be reviewed by our team.</p>
+                </form>
+            }
+            else
+            {
+                <p>Please log in to book this trip.</p>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/trip.js" asp-append-version="true"></script>
+}

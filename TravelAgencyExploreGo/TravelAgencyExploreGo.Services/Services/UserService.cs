@@ -27,7 +27,8 @@ namespace TravelAgencyExploreGo.Services.Services
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 Email = model.Email,
-                UserName = model.Email
+                UserName = model.Email,
+                PhoneNumber = model.PhoneNumber
             };
 
             return await userManager.CreateAsync(user, model.Password);
@@ -51,5 +52,36 @@ namespace TravelAgencyExploreGo.Services.Services
             await signInManager.SignOutAsync();
         }
 
+        public ContactDto? GetUserContact(Guid userId)
+        {
+            User? user = userManager.Users
+                .FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return null;
+            }
+            ContactDto contact = new ContactDto();
+
+            contact.FullName = $"{user.FirstName} {user.FirstName}";
+            if(user.Email != null)
+            {
+                contact.Email = user.Email;
+            }
+            else
+            {
+                contact.Email = string.Empty;
+            }
+            if (user.PhoneNumber != null)
+            {
+                contact.PhoneNumber = user.PhoneNumber;
+            }
+            else
+            {
+                contact.PhoneNumber = string.Empty;
+            }
+
+            return contact; 
+        }
     }
 }

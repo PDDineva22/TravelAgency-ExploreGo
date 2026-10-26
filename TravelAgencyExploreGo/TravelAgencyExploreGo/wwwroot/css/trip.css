@@ -1,13 +1,9 @@
-﻿/* TRIPS PAGE */
-
-.trips-page {
+﻿.trips-page {
     min-height: 100vh;
     padding: 70px 7% 100px;
     background: #061b35;
     color: white;
 }
-
-/* HEADING */
 
 .trips-heading {
     text-align: center;
@@ -15,21 +11,19 @@
 }
 
     .trips-heading h1 {
+        margin: 0;
         font-family: 'Caveat', cursive;
         font-size: 100px;
         font-weight: 700;
-        margin: 0;
         color: white;
     }
 
     .trips-heading p {
+        margin-top: 10px;
         font-family: 'Nunito', sans-serif;
         font-size: 21px;
         color: #cbd5e1;
-        margin-top: 10px;
     }
-
-/* CARDS GRID */
 
 .trips-grid {
     display: grid;
@@ -37,16 +31,14 @@
     gap: 30px;
 }
 
-/* TRIP CARD */
-
 .trip-card {
     display: flex;
     flex-direction: column;
     min-width: 0;
     overflow: hidden;
+    border: 1px solid #29445b;
     border-radius: 18px;
     background: #102840;
-    border: 1px solid #29445b;
     box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
     transition: transform .3s, box-shadow .3s;
 }
@@ -55,8 +47,6 @@
         transform: translateY(-8px);
         box-shadow: 0 15px 40px rgba(223, 255, 0, .3);
     }
-
-/* IMAGE */
 
 .trip-image {
     position: relative;
@@ -75,8 +65,6 @@
     transform: scale(1.05);
 }
 
-/* DISCOUNT BADGE */
-
 .trip-discount {
     position: absolute;
     top: 15px;
@@ -88,8 +76,6 @@
     font-size: 22px;
     font-weight: 900;
 }
-
-/* CARD CONTENT */
 
 .trip-info {
     display: flex;
@@ -113,18 +99,16 @@
 }
 
 .trip-description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    margin-bottom: 20px;
     color: #cbd5e1;
     font-family: 'Nunito', sans-serif;
     font-size: 16px;
     line-height: 1.6;
-    margin-bottom: 20px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
 }
-
-/* DATE AND SEATS */
 
 .trip-details {
     display: flex;
@@ -135,8 +119,6 @@
     font-family: 'Nunito', sans-serif;
     font-size: 14px;
 }
-
-/* PRICE AND BUTTON */
 
 .trip-bottom {
     display: flex;
@@ -167,12 +149,14 @@
 .trip-button {
     display: inline-block;
     padding: 12px 18px;
+    border: none;
     border-radius: 25px;
     background: #dfff00;
     color: #061b35;
     font-weight: 800;
     text-decoration: none;
     white-space: nowrap;
+    cursor: pointer;
     transition: background .3s, transform .3s;
 }
 
@@ -182,16 +166,21 @@
         transform: translateY(-3px);
     }
 
-/* EMPTY PAGE */
+    .trip-button:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
+        .trip-button:disabled:hover {
+            transform: none;
+        }
 
 .no-trips {
+    margin-top: 40px;
     text-align: center;
     color: #cbd5e1;
     font-size: 22px;
-    margin-top: 40px;
 }
-
-/* RESPONSIVE */
 
 @media (max-width: 1100px) {
     .trips-grid {
@@ -235,4 +224,78 @@
     .trip-button {
         transition: none;
     }
+}
+.booking-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+    .booking-overlay.open {
+        display: flex;
+    }
+
+.booking-dialog {
+    display: flex;
+    position: relative;
+    width: 850px;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 18px;
+    color: #061b35;
+}
+
+.booking-picture {
+    width: 40%;
+}
+
+    .booking-picture img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.booking-content {
+    width: 60%;
+    padding: 30px;
+}
+
+.booking-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.booking-success,
+.booking-error {
+    padding: 18px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.booking-success {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.booking-error {
+    background: #fee2e2;
+    color: #991b1b;
 }

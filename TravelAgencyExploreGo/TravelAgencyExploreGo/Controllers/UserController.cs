@@ -61,6 +61,7 @@ namespace TravelAgencyExploreGo.Web.Controllers
                 LastName = model.LastName,
                 Email = model.Email,
                 Password = model.Password,
+                PhoneNumber = model.PhoneNumber,
             };
 
             var result = await userService.RegisterAsync(registerDto);

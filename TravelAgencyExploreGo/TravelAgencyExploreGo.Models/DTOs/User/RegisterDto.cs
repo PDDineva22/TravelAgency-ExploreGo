@@ -22,5 +22,8 @@ namespace TravelAgencyExploreGo.Models.DTOs.User
         [Required]
         [StringLength(EntityValidation.UserPasswordLengthMax, MinimumLength = EntityValidation.UserPasswordLengthMin)]
         public string Password { get; set; } = null!;
+        [Required]
+        [StringLength(EntityValidation.UserPhoneNumberLengthMax, MinimumLength = EntityValidation.UserPhoneNumberLengthMin)]
+        public string PhoneNumber { get; set; } = null!;
     }
 }
