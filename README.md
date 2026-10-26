@@ -41,6 +41,11 @@ Registered users can manage their reservations, while administrators have access
 
 The application was developed as part of the **SoftUni ASP.NET Fundamentals Project Assignment**, demonstrating MVC architecture, database integration, CRUD operations, authentication, validation, and responsive web design.
 
+Additional documentation and diagrams for ExploreGo:
+
+- [Project Documentation (DOCX)](docs/TravelAgencyExploreGo.docx)
+- [Database ER Diagram (PDF)](docs/TravelAgency.drawio.pdf)
+- [Application Architecture Diagram (PDF)](docs/UseCaseDiagram.drawio.pdf)
 ---
 
 ## ✨ Main Features
@@ -262,13 +267,6 @@ These validations help protect the database and ensure that bookings follow the 
 ---
 
 ## Project Documentation
-
-Additional documentation and diagrams for ExploreGo:
-
-- [Project Documentation (PDF)](docs/ProjectDocumentation.pdf)
-- [Database ER Diagram (PDF)](docs/ERDiagram.pdf)
-- [Application Architecture Diagram (PDF)](docs/ArchitectureDiagram.pdf)
-
 
 ## 📚 Documentation
 
