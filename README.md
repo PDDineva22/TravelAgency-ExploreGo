@@ -1,4 +1,3 @@
-
 <div align="center">
 
 <img src="docs/exploreGo-logo.png" alt="ExploreGo Logo" width="600">
@@ -8,6 +7,11 @@
 **Your next adventure starts here.**
 
 A travel booking web application built with ASP.NET Core MVC.
+
+## Project Management
+
+The development of ExploreGo was organized using GitHub Projects, Issues, and Milestones to plan tasks and track progress.
+You can view the project's organization, completed tasks, and development milestones here:
 
 <br>
 
