@@ -253,11 +253,6 @@ The application uses:
 These validations help protect the database and ensure that bookings follow the application's business rules.
 
 ---
-
-## 📸 Application Screenshots
-
-The Screenshots section presents the main pages of the application, including the homepage, destinations, trips, booking interface, and administration panel.
-
 <div align="center">
 
 ### 🖼️ [View Application Screenshots](docs/SCREENSHOTS.md)
@@ -265,6 +260,15 @@ The Screenshots section presents the main pages of the application, including th
 </div>
 
 ---
+
+## Project Documentation
+
+Additional documentation and diagrams for ExploreGo:
+
+- [Project Documentation (PDF)](docs/ProjectDocumentation.pdf)
+- [Database ER Diagram (PDF)](docs/ERDiagram.pdf)
+- [Application Architecture Diagram (PDF)](docs/ArchitectureDiagram.pdf)
+
 
 ## 📚 Documentation
 
