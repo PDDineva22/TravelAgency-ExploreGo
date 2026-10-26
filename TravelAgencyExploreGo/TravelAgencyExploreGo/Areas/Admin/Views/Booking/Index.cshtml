@@ -1,0 +1,61 @@
+﻿@using TravelAgencyExploreGo.Data.Models.Enums
+@model List<TravelAgencyExploreGo.Data.Models.Entities.Booking>
+@{
+    ViewData["Title"] = "Manage Bookings";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-bookings.css" asp-append-version="true" />
+}
+
+<section class="admin-bookings">
+    <h1>Manage Bookings</h1>
+    @if (TempData["Success"] != null)
+    {
+        <p class="text-success">@TempData["Success"]</p>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <p class="text-danger">@TempData["Error"]</p>
+    }
+
+    <table class="admin-bookings-table">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Trip</th>
+                <th>People</th>
+                <th>Total Price</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+    <tbody>
+        @foreach(var booking in Model)
+        {
+            <tr>
+                <td>@booking.User.FirstName @booking.User.LastName</td>
+                <td>@booking.Trip.Title</td>
+                <td>@booking.PeopleCount</td>
+                <td>@booking.TotalPrice</td>
+                <td>@booking.BookingStatus</td>
+                <td>
+                    @if(booking.BookingStatus == BookingStatus.Pending)
+                    {
+                        <div class="admin-actions">
+                            <form asp-area="Admin" asp-controller="Booking" asp-action="Approve" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@booking.Id" />
+                                <button type="submit" class="admin-approve">Approve</button>
+                            </form>
+                            <form asp-area="Admin" asp-controller="Booking" asp-action="Reject" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@booking.Id" />
+                                <button type="submit" class="admin-reject">Reject</button>
+                            </form>
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</section>

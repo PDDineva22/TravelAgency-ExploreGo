@@ -52,5 +52,30 @@ namespace TravelAgencyExploreGo.Web.Controllers
 
             return RedirectToAction("Index", "Trip");
         }
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public IActionResult Cancel(Guid id)
+        {
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!Guid.TryParse(userId, out Guid currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            bool cancelled = bookingService.CancelBooking(id, currentUserId);
+
+            if (cancelled)
+            {
+                TempData["BookingSuccess"] = "Your booking has been cancelled!";
+            }
+            else
+            {
+                TempData["BookingError"] = "Booking could not be cancelled.";
+            }
+
+            return RedirectToAction("Index", "Home", new { area = "" });
+        }
     }
 }

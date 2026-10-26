@@ -1,4 +1,5 @@
-﻿@model TravelAgencyExploreGo.Web.ViewModels.Home.HomeViewModel
+﻿@using TravelAgencyExploreGo.Data.Models.Enums
+@model TravelAgencyExploreGo.Web.ViewModels.Home.HomeViewModel
 @{
     ViewData["Title"] = "Home";
 }
@@ -40,7 +41,7 @@
 <section class="explore-section">
     <div class="explore-cards">
 
-        <a href="#" class="explore-card">
+        <a asp-controller="Destinations" asp-action="Index" class="explore-card">
             <img src="/images/home/card-capadocia.png" alt="Destinations">
 
             <div class="explore-card-content">
@@ -56,7 +57,7 @@
             </div>
         </a>
 
-        <a href="#" class="explore-card">
+        <a asp-controller="Trip" asp-action="Index" class="explore-card">
             <img src="/images/home/card-germany.png" alt="Exclusive deals">
             <div class="explore-card-content">
                 <div>
@@ -71,7 +72,7 @@
             </div>
         </a>
 
-        <a href="#" class="explore-card">
+        <a asp-controller="Home" asp-action="Index" class="explore-card">
             <img src="~/images/home/card-spain.png" alt="About Us">
             <div class="explore-card-content">
                 <div>
@@ -101,7 +102,7 @@
         <div>
             <h2>Exclusive Deals</h2>
         </div>
-        <a href="#" class="deals-view-all">View All Deals →</a>
+        <a asp-controller="Trips" asp-action="Index" class="deals-view-all">View All Deals →</a>
     </div>
 
     <div class="deals-grid deals-carousel">
@@ -165,6 +166,15 @@
 
 @if(User.Identity != null && User.Identity.IsAuthenticated)
 {
+    @if (TempData["BookingSuccess"] != null)
+    {
+        <p class="booking-success">@TempData["BookingSuccess"]</p>
+    }
+
+    @if (TempData["BookingError"] != null)
+    {
+        <p class="booking-error">@TempData["BookingError"]</p>
+    }
     <section class="my-bookings">
         <h2>You @Model.UserName have booked</h2>
         <div class="my-bookings-container">
@@ -182,7 +192,15 @@
                         <span>@booking.TotalPrice</span>
                         <span class="my-booking-status">@booking.BookingStatus</span>
 
-                        <button type="button" class="my-booking-delete">X</button>
+                        @if (booking.BookingStatus != BookingStatus.Cancelled && booking.Trip.StartDate > DateTime.UtcNow)
+                        {
+                            <form asp-area="" asp-controller="Booking" asp-action="Cancel" method="post">
+
+                                <input type="hidden" name="id" value="@booking.Id" />
+
+                                <button type="submit" class="my-booking-delete">🗑</button>
+                            </form>
+                        }
                     </div>
                 }
             }

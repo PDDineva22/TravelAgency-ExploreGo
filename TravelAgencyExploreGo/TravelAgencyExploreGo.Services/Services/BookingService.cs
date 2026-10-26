@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TravelAgencyExploreGo.Common;
 using TravelAgencyExploreGo.Data;
 using TravelAgencyExploreGo.Data.Models.Entities;
+using TravelAgencyExploreGo.Data.Models.Enums;
 using TravelAgencyExploreGo.Models.DTOs.Trip;
 using TravelAgencyExploreGo.Services.Contracts;
 
@@ -63,6 +64,20 @@ namespace TravelAgencyExploreGo.Services.Services
 
             return true;
         }
+
+        public List<Booking> GetAllBookings()
+        {
+            List<Booking> allBookings = dbContext.Bookings
+                .Include(b => b.Trip)
+                .Include(b => b.User)
+                .OrderByDescending(b => b.BookingDate)
+                .ThenBy(b => b.TotalPrice)
+                .ThenBy(b => b.PeopleCount)
+                .ToList();
+
+            return allBookings;
+        }
+
         public List<Booking> GetUserBookings(Guid userId)
         {
             List<Booking> allBookings = dbContext.Bookings
@@ -73,6 +88,84 @@ namespace TravelAgencyExploreGo.Services.Services
                 .ToList();
 
             return allBookings;
+        }
+
+        public bool RejectBooking(Guid bookingId)
+        {
+            Booking? booking = dbContext.Bookings.Find(bookingId);
+
+            if(booking == null)
+            {
+                return false;
+            }
+
+            if(booking.BookingStatus != BookingStatus.Pending)
+            {
+                return false;
+            }
+
+            booking.BookingStatus = BookingStatus.Cancelled;
+            dbContext.SaveChanges();
+
+            return true;
+        }
+        public bool ConfirmBooking(Guid bookingId)
+        {
+            Booking? booking = dbContext.Bookings
+                .Include(b => b.Trip)
+                .FirstOrDefault(b => b.Id == bookingId);
+
+            if(booking == null)
+            {
+                return false;
+            }
+            if(booking.BookingStatus != BookingStatus.Pending)
+            {
+                return false;
+            }
+            if(booking.Trip.StartDate <= DateTime.UtcNow)
+            {
+                return false;
+            }
+            if (booking.PeopleCount > booking.Trip.AvailableSeats)
+            {
+                return false;
+            }
+            booking.Trip.AvailableSeats -= booking.PeopleCount;
+            booking.BookingStatus = BookingStatus.Confirmed;
+
+            dbContext.SaveChanges();
+
+            return true;
+        }
+        public bool CancelBooking(Guid bookingId, Guid userId)
+        {
+            Booking? booking = dbContext.Bookings
+                .Include(b => b.Trip)
+                .FirstOrDefault(b => b.Id == bookingId && b.UserId == userId);
+
+            if (booking == null)
+            {
+                return false;
+            }
+            if (booking.BookingStatus == BookingStatus.Cancelled)
+            {
+                return false;
+            }
+            if (booking.Trip.StartDate <= DateTime.UtcNow)
+            {
+                return false;
+            }
+            if (booking.BookingStatus == BookingStatus.Confirmed)
+            {
+                booking.Trip.AvailableSeats += booking.PeopleCount;
+            }
+
+            booking.BookingStatus = BookingStatus.Cancelled;
+
+            dbContext.SaveChanges();
+
+            return true;
         }
     }
 }

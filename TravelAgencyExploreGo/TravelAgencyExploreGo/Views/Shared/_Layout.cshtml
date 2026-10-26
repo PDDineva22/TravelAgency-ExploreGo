@@ -17,20 +17,23 @@
 <body>
     <header>
         <nav class="explore-navbar">
-            <a asp-controller="Home" asp-action="Index" class="explore-logo">
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="explore-logo">
                 <img src="~/images/exploreGo-logo.png" alt="" class="navbar-logo">   
             </a>
 
             <div class="explore-links">
-                <a asp-controller="Home" asp-action="Index">Home</a>
-                <a asp-controller="Destinations" aps-action="Index">Destinations</a>
-                <a asp-controller="Trip" asp-action="Index">Exclusive Deals</a>
-                <a href="#">About Us</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-area="" asp-controller="Destinations" aps-action="Index">Destinations</a>
+                <a asp-area="" asp-controller="Trip" asp-action="Index">Exclusive Deals</a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-area="Admin" asp-controller="Booking" asp-action="Index">Admin Panel</a>
+                }
             </div>
             <div class="explore-actions">
                 @if (User.Identity?.IsAuthenticated == true)
                 {
-                    <form asp-controller="User" asp-action="Logout" method="post">
+                    <form asp-area="" asp-controller="User" asp-action="Logout" method="post">
                         <button type="submit" class="login-btn">Log out</button>
                     </form>
                 }
@@ -60,10 +63,9 @@
 
             <div class="footer-links">
                 <h3>Quick Links</h3>
-                <a asp-controller="Home" asp-action="Index">Home</a>
-                <a href="#">Destinations</a>
-                <a href="#">Exclusive Deals</a>
-                <a href="#">About Us</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-area="" asp-controller="Destinations" asp-action="Index">Destinations</a>
+                <a asp-area="" asp-controller="Trip" asp-action="Index">Exclusive Deals</a>
             </div>
 
             <div class="footer-contact">

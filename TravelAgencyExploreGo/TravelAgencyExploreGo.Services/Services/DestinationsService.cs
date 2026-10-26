@@ -17,6 +17,54 @@ namespace TravelAgencyExploreGo.Services.Services
         {
             this.dbContext = dbContext;
         }
+
+        public void AddDestination(Destination destination)
+        {
+            destination.Id = Guid.NewGuid();
+            dbContext.Destinations.Add(destination);
+            dbContext.SaveChanges();
+        }
+
+        public bool DeleteDestination(Guid id)
+        {
+            Destination? destination = dbContext.Destinations.Find(Id);
+
+            if (destination == null)
+            {
+                return false;
+            }
+            bool hasTrips = dbContext.Trips.Any(t => t.DestinationId == id);
+            if (hasTrips)
+            {
+                return false;
+            }
+
+            dbContext.Destinations.Remove(destination);
+            dbContext.SaveChanges();
+            return true;
+        }
+
+        public bool EditDestination(Destination destination)
+        {
+            Destination? existing = dbContext.Destinations.Find(destination.Id);
+
+            if (existing == null)
+            {
+                return false;
+            }
+            existing.Name = destination.Name;
+            existing.Country = destination.Country;
+            existing.Description = destination.Description;
+            existing.ImageUrl = destination.ImageUrl;
+
+            dbContext.SaveChanges();
+            return true;
+        }
+
+        public Destination? GetDestinationById(Guid id)
+        {
+            return dbContext.Destinations.Find(id);
+        }
         public List<Destination> GetAllDestinations()
         {
             return dbContext.Destinations

@@ -837,3 +837,19 @@
         margin-left: auto;
     }
 }
+.my-booking-row form {
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+.my-booking-delete {
+    border: none;
+    background: transparent;
+    color: #dfff00;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+    .my-booking-delete:hover {
+        color: white;
+    }

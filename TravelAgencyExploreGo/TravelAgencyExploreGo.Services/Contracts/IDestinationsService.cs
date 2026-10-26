@@ -10,5 +10,9 @@ namespace TravelAgencyExploreGo.Services.Contracts
     public interface IDestinationsService
     {
         List<Destination> GetAllDestinations();
+        Destination? GetDestinationById(Guid id);
+        void AddDestination(Destination destination);
+        bool EditDestination(Destination destination);
+        bool DeleteDestination(Guid id);
     }
 }

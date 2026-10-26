@@ -7,5 +7,10 @@ namespace TravelAgencyExploreGo.Services.Contracts
     {
         bool CreateBooking(Guid userId, CreateBookingDto dto);
         List<Booking> GetUserBookings(Guid userId);
+        List<Booking> GetAllBookings();
+
+        bool ConfirmBooking(Guid bookingId);
+        bool RejectBooking(Guid bookingId);
+        bool CancelBooking(Guid bookingId, Guid userId);
     }
 }
