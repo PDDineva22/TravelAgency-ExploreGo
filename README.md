@@ -14,17 +14,17 @@ A travel booking web application built with ASP.NET Core MVC.
 <a href="README.md">
   <img src="https://img.shields.io/badge/OVERVIEW-0969DA?style=for-the-badge" alt="Overview">
 </a>
-<a href="docs/INSTALLATION.md">
+
+<a href="docs/Installation.md">
   <img src="https://img.shields.io/badge/INSTALLATION-30363D?style=for-the-badge" alt="Installation">
 </a>
-<a href="docs/FEATURES.md">
+
+<a href="docs/Features.md">
   <img src="https://img.shields.io/badge/FEATURES-30363D?style=for-the-badge" alt="Features">
 </a>
-<a href="docs/ARCHITECTURE.md">
+
+<a href="docs/Architecture.md">
   <img src="https://img.shields.io/badge/ARCHITECTURE-30363D?style=for-the-badge" alt="Architecture">
-</a>
-<a href="docs/SCREENSHOTS.md">
-  <img src="https://img.shields.io/badge/SCREENSHOTS-30363D?style=for-the-badge" alt="Screenshots">
 </a>
 
 </div>
