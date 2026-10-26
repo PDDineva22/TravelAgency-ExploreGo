@@ -102,7 +102,7 @@
         <div>
             <h2>Exclusive Deals</h2>
         </div>
-        <a asp-controller="Trips" asp-action="Index" class="deals-view-all">View All Deals →</a>
+        <a asp-controller="Trip" asp-action="Index" class="deals-view-all">View All Deals →</a>
     </div>
 
     <div class="deals-grid deals-carousel">
@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="deal-bottom">
-                        <a href="#" class="deal-button">Explore Trip →</a>
+                        <a asp-area="" asp-controller="Trip" asp-action="Index" class="deal-button">Explore Trip →</a>
                         <span class="deal-badge">~@discount%</span>
                     </div>
                 </div>

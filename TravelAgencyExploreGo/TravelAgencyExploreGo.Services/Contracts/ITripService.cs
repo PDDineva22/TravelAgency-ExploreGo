@@ -6,5 +6,10 @@ namespace TravelAgencyExploreGo.Services.Contracts
     {
         List<Trip> GetExclusiveDeals();
         List<Trip> GetAllTrips();
+
+        Trip? GetTripById(Guid id);
+        void AddTrip(Trip trip);
+        bool EditTrip(Trip trip);
+        bool DeleteTrip(Guid id);
     }
 }

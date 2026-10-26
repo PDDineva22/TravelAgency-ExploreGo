@@ -185,7 +185,7 @@ namespace TravelAgencyExploreGo.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Bookings");
+                    b.ToTable("Bookings", (string)null);
                 });
 
             modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.Destination", b =>
@@ -216,7 +216,7 @@ namespace TravelAgencyExploreGo.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Destinations");
+                    b.ToTable("Destinations", (string)null);
                 });
 
             modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.Trip", b =>
@@ -269,7 +269,7 @@ namespace TravelAgencyExploreGo.Data.Migrations
 
                     b.HasIndex("DestinationId");
 
-                    b.ToTable("Trips");
+                    b.ToTable("Trips", (string)null);
                 });
 
             modelBuilder.Entity("TravelAgencyExploreGo.Data.Models.Entities.User", b =>

@@ -1,7 +1,10 @@
 ﻿@model List<TravelAgencyExploreGo.Data.Models.Entities.Destination>
-
 @{
     ViewData["Title"] = "Manage Destinations";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-bookings.css" asp-append-version="true" />
 }
 
 <section class="admin-bookings">
@@ -12,8 +15,7 @@
     {
         <p class="text-danger">@TempData["Error"]</p>
     }
-
-    <table class="table table-dark mt-4">
+    <table class="admin-bookings-table">
         <thead>
             <tr>
                 <th>Image</th>
@@ -22,18 +24,19 @@
                 <th>Actions</th>
             </tr>
         </thead>
+
         <tbody>
             @foreach (var destination in Model)
             {
                 <tr>
                     <td>
-                        <img src="@destination.ImageUrl" width="80" alt="@destination.Name" />
+                        <img src="@destination.ImageUrl" width="70" alt="@destination.Name" />
                     </td>
                     <td>@destination.Name</td>
                     <td>@destination.Country</td>
                     <td>
                         <a asp-area="Admin" asp-controller="Destinations" asp-action="Edit" asp-route-id="@destination.Id" class="btn btn-warning">Edit</a>
-                        <form asp-area="Admin" asp-controller="Destinations" asp-action="Delete" method="post" style="display:inline;">
+                        <form asp-area="Admin" asp-controller="Destinations" asp-action="Delete" method="post" style="display:inline">
                             <input type="hidden" name="id" value="@destination.Id" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
@@ -42,4 +45,5 @@
             }
         </tbody>
     </table>
+
 </section>

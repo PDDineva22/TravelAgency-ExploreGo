@@ -22,12 +22,8 @@ namespace TravelAgencyExploreGo.Data.Models.Entities
         public decimal? DiscountPrice { get; set; }
         [Range(EntityValidation.TripAvailableSeatsCountMin, EntityValidation.TripAvailableSeatsCountMax)]
         public int AvailableSeats { get; set; }
-        [Url]
-        [Required]
         [MaxLength(EntityValidation.TripImageUrlLengthMax)]
         public string Image1 { get; set; } = null!;
-        [Url]
-        [Required]
         [MaxLength(EntityValidation.TripImageUrlLengthMax)]
         public string Image2 { get; set; } = null!;
         [ForeignKey(nameof(DestinationId))]

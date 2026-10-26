@@ -1,0 +1,56 @@
+﻿@model List<TravelAgencyExploreGo.Data.Models.Entities.Trip>
+@{
+    ViewData["Title"] = "Manage Trips";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/admin-bookings.css" asp-append-version="true" />
+}
+
+<section class="admin-bookings">
+
+    <h1>Manage Trips</h1>
+    <a asp-area="Admin" asp-controller="Trip" asp-action="Create" class="btn btn-success">Add Trip</a>
+    @if (TempData["Error"] != null)
+    {
+        <p class="text-danger">@TempData["Error"]</p>
+    }
+
+    <table class="admin-bookings-table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Destination</th>
+                <th>Price</th>
+                <th>Seats</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var trip in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@trip.Image1" width="70" alt="@trip.Title" />
+                    </td>
+
+                    <td>@trip.Title</td>
+                    <td>@trip.Destination.Name</td>
+                    <td>$@trip.Price</td>
+                    <td>@trip.AvailableSeats</td>
+
+                    <td>
+                        <a asp-area="Admin" asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.Id" class="btn btn-warning">Edit</a>
+                        <form asp-area="Admin" asp-controller="Trip" asp-action="Delete" method="post" style="display:inline">
+                            <input type="hidden" name="id" value="@trip.Id" />
+
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</section>
